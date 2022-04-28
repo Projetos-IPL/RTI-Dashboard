@@ -1,12 +1,10 @@
 .form-signin {
+    height: 100%;
     width: 100%;
     max-width: 330px;
     padding: 15px;
     margin: auto;
-}
-
-.form-signin .checkbox {
-    font-weight: 400;
+    text-align: center;
 }
 
 .form-signin .form-floating:focus-within {
@@ -32,4 +30,8 @@
 
 #error-banner {
     display: none;
+}
+
+#loading-spinner {
+    display: none; /*Não mostrar por defeito */
 }

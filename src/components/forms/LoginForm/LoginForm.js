@@ -23,6 +23,6 @@ function LoginForm() {
             <p className="mt-5 mb-3 text-muted">&copy; 2022 - Afonso Santos, Iúri Raimundo</p>
         </form>
     );
-};
+}
 
 export default LoginForm;
