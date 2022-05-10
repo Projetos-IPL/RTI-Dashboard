@@ -1,41 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import LoginForm from "../../components/forms/LoginForm/LoginForm";
 import "./LoginScreen.css";
 import request from "../../utils/utils.js";
+import { toast, ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.min.css";
 
 function LoginScreen() {
-  const [loginResult, setLoginResult] = useState({});
-
-  useEffect(() => {
-    console.log(loginResult);
-  }, [loginResult]);
-
   const formSubmitDataHandler = (formData) => {
-    console.log(formData);
-
     request("POST", "auth.php", formData, null)
       .then((res) => {
-        setLoginResult({
-          message: "Login com sucesso",
-          type: "success",
-        });
+        localStorage.setItem("auth", JSON.stringify(res));
 
-        console.log(loginResult);
+        toast.success(`Bem-vindo, ${res.username}!`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       })
       .catch((err) => {
-        setLoginResult({
-          message: err.message,
-          type: "danger",
+        toast.error(err.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
         });
       });
   };
 
   return (
     <main className="form-signin">
-      <LoginForm
-        onLoginFormSubmit={formSubmitDataHandler}
-        onLoginResult={loginResult}
-      />
+      <LoginForm onLoginFormSubmit={formSubmitDataHandler} />
+      <ToastContainer />
     </main>
   );
 }

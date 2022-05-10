@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function LoginForm({ onLoginFormSubmit, onLoginResult }) {
+function LoginForm({ onLoginFormSubmit }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -14,7 +14,6 @@ function LoginForm({ onLoginFormSubmit, onLoginResult }) {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password);
 
     const loginData = {
       username,
@@ -28,12 +27,6 @@ function LoginForm({ onLoginFormSubmit, onLoginResult }) {
     <form onSubmit={onFormSubmit}>
       <i className="fa-solid fa-building-shield login-logo"></i>
       <h1 className="h3 my-4 fw-normal">Sistema de Segurança</h1>
-
-      {onLoginResult && (
-        <div id="error-banner" role="alert">
-          {onLoginResult.message}
-        </div>
-      )}
 
       <div className="form-floating mb-2">
         <input
