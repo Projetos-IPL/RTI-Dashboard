@@ -1,10 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import Dashboard from "./Dashboard";
+import LoginScreen from "./view/screens/LoginScreen/LoginScreen";
+
+import { APP_ROUTES } from "./config";
+
+import "react-toastify/dist/ReactToastify.min.css";
+import { ToastContainer } from "react-toastify";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <>
+    <ToastContainer />
+    <Router>
+      <Routes>
+        <Route
+          path={APP_ROUTES.DASHBOARD_ROUTE + "/*"}
+          element={<Dashboard />}
+        />
+        <Route path={APP_ROUTES.LOGIN_SCREEN_ROUTE} element={<LoginScreen />} />
+      </Routes>
+    </Router>
+  </>
 );

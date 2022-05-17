@@ -1,17 +1,25 @@
-import React from "react";
+import React, { createRef } from "react";
 
-function LoginForm() {
-  const submitButtonClickHandler = (e) => {};
+function LoginForm({ submitAction }) {
+  const username = createRef();
+  const password = createRef();
+
+  const submitButtonClickHandler = (e) => {
+    e.preventDefault();
+
+    const formData = {
+      username: username.current.value,
+      password: password.current.value,
+    };
+
+    submitAction(formData);
+  };
 
   return (
     <form>
-      <i className="fa-solid fa-building-shield login-logo" />
-      <h1 className="h3 my-4 fw-normal">Sistema de Segurança</h1>
-
-      <div id="error-banner" role="alert" />
-
       <div className="form-floating mb-2">
         <input
+          ref={username}
           className="form-control"
           id="username-input"
           placeholder="Utilizador"
@@ -21,6 +29,7 @@ function LoginForm() {
       </div>
       <div className="form-floating">
         <input
+          ref={password}
           className="form-control"
           id="password-input"
           placeholder="Palavra-Passe"
