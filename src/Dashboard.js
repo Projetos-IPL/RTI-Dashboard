@@ -11,6 +11,7 @@ import { APP_ROUTES } from "./config";
 import MainScreen from "./view/screens/MainScreen/MainScreen";
 import { TOAST_SUCCESS_CONFIG } from "./utils/toastConfigs";
 import { getUsernameFromStorage } from "./utils/utils";
+import Navbar from "./view/components/Navbar/Navbar";
 
 function Dashboard() {
   let navigate = useNavigate();
@@ -36,6 +37,7 @@ function Dashboard() {
 
   return (
     <>
+      <Navbar />
       <Routes>
         <Route path={APP_ROUTES.MAIN_SCREEN_ROUTE} element={<MainScreen />} />
       </Routes>
