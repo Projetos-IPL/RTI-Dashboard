@@ -4,12 +4,19 @@ import authUtils from "./authUtils";
 /**
  * Função para efetuar um pedido http
  * @param {String} url URL
+ * @param urlParams
  * @param {String} method Método HTTP
  * @param {Object | null }headers Cabeçalhos
  * @param {Object | null} data Dados
  * @returns {Promise<Response<any, Record<string, any>, number>>}
  */
-export async function request(url = "", method = "", headers = {}, data = {}) {
+export async function request(
+  url = "",
+  urlParams = {},
+  method = "",
+  headers = {},
+  data = {}
+) {
   let init = {
     method: method,
     mode: "cors",
@@ -27,6 +34,10 @@ export async function request(url = "", method = "", headers = {}, data = {}) {
     init.body = JSON.stringify(data);
   }
 
+  if (urlParams) {
+    url = url + "?" + new URLSearchParams(urlParams);
+  }
+
   return await fetch(url, init);
 }
 
@@ -37,7 +48,7 @@ export async function request(url = "", method = "", headers = {}, data = {}) {
  * @returns {Promise<Response<*, Record<string, *>, number>>}
  */
 export async function postData(url = "", data = {}) {
-  return request(url, "POST", null, data);
+  return request(url, null, "POST", null, null, data);
 }
 
 /**
@@ -49,6 +60,7 @@ export async function postData(url = "", data = {}) {
 export async function postDataWithAuthToken(url = "", data = {}) {
   return request(
     url,
+    null,
     "POST",
     { [AUTH_TOKEN_HEADER_NAME]: authUtils.getAuthTokenFromStorage() },
     data
@@ -58,20 +70,23 @@ export async function postDataWithAuthToken(url = "", data = {}) {
 /**
  * Função para efetuar um pedido http get
  * @param url URL
+ * @param urlParams
  * @returns {Promise<Response<*, Record<string, *>, number>>}
  */
-export async function getData(url = "") {
-  return request(url, "GET", null, null);
+export async function getData(url = "", urlParams = {}) {
+  return request(url, urlParams, "GET", null, null);
 }
 
 /**
  * Função para efetuar um pedido http get com o token de autenticação no cabeçalho
  * @param url URL
+ * @param urlParams
  * @returns {Promise<Response<*, Record<string, *>, number>>}
  */
-export async function getDataWithAuthToken(url = "") {
+export async function getDataWithAuthToken(url = "", urlParams = {}) {
   return request(
     url,
+    urlParams,
     "GET",
     { [AUTH_TOKEN_HEADER_NAME]: authUtils.getAuthTokenFromStorage() },
     null

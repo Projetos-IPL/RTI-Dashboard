@@ -1,9 +1,9 @@
 import React from "react";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import "./LoginScreen.css";
-import { login } from "./actions/login";
 import { handleException } from "../../../utils/handleException";
 import { APP_ROUTES } from "../../../config";
+import authUtils from "../../../utils/authUtils.js";
 
 function LoginScreen() {
   /**
@@ -12,7 +12,7 @@ function LoginScreen() {
    */
   const loginFormSubmitAction = (formData) => {
     // Efetuar login
-    login(formData.username, formData.password).then((res) => {
+    authUtils.login(formData.username, formData.password).then((res) => {
       if (res) {
         // Redirecionar para a página principal
         window.location.href = APP_ROUTES.DASHBOARD_ROUTE;

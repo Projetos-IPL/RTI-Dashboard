@@ -3,8 +3,8 @@
  */
 
 import React, { useEffect } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { Route, Routes } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import authUtils from "./utils/authUtils";
 import { APP_ROUTES } from "./config";
@@ -12,19 +12,20 @@ import MainScreen from "./view/screens/MainScreen/MainScreen";
 import { TOAST_SUCCESS_CONFIG } from "./utils/toastConfigs";
 import { getUsernameFromStorage } from "./utils/utils";
 import Navbar from "./view/components/Navbar/Navbar";
+import { handleException } from "./utils/handleException.js";
 
 function Dashboard() {
-  let navigate = useNavigate();
-
   // Validar a sessão a cada refrescamento da aplicação, se a sessão for inválida
   // redirecionar para o ecrã de login
   useEffect(() => {
-    authUtils.validateSession().then((res) => {
-      console.log(res);
-      if (!res) {
-        window.location.href = APP_ROUTES.LOGIN_SCREEN_ROUTE;
-      }
-    });
+    authUtils
+      .validateSession()
+      .then((res) => {
+        if (!res) authUtils.logout();
+      })
+      .catch((err) => {
+        handleException(err.message);
+      });
   });
 
   // Mostrar mensagem de bem vindo

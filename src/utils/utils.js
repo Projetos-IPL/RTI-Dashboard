@@ -6,6 +6,7 @@ import {
   LOGIN_TIMESTAMP_STORAGE_NAME,
   USERNAME_STORAGE_NAME,
 } from "./constants";
+import { APP_ROUTES } from "../config.js";
 
 /**
  * Função para definir o username no local storage
@@ -37,4 +38,11 @@ export function storeLoginTimestampInStorage(timestamp) {
  */
 export function getLoginTimestampFromStorage() {
   return localStorage.getItem(LOGIN_TIMESTAMP_STORAGE_NAME);
+}
+
+/**
+ * Função para redirecionar a aplicação para a página de login
+ */
+export function redirectToLoginScreen() {
+  window.location.href = APP_ROUTES.LOGIN_SCREEN_ROUTE;
 }

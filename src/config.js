@@ -2,11 +2,12 @@
 
 // API
 export const API_URL = "http://localhost:81/api"; // https://projeto-rti-api.herokuapp.com/api";
-export const AUTH_API_ROUTE = "/auth.php";
+export const AUTH_API_ROUTE = API_URL + "/auth.php";
+export const ENTRANCE_LOGS_API_ROUTE = API_URL + "/movimentos.php";
 
-export const API_CONFIG = {
-  API_URL,
+export const API_ROUTES = {
   AUTH_API_ROUTE,
+  ENTRANCE_LOGS_API_ROUTE,
 };
 
 // Aplicação
