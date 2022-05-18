@@ -48,7 +48,7 @@ export async function request(
  * @returns {Promise<Response<*, Record<string, *>, number>>}
  */
 export async function postData(url = "", data = {}) {
-  return request(url, null, "POST", null, null, data);
+  return request(url, null, "POST", null, data);
 }
 
 /**

@@ -1,15 +1,13 @@
+import EntranceRecordAccessCol from "./EntranceRecordAccessCol.js";
+
 function EntranceRecordTableRow({ index, entranceRecord }) {
   return (
     <tr>
       <td>{index}</td>
-      <td>{entranceRecord.personName}</td>
-      <td>{entranceRecord.timestamp}</td>
-      <td
-        className={
-          entranceRecord.access ? "badge bg-success" : "badge bg-success"
-        }
-      >
-        {entranceRecord.access ? "Permitido" : "Negado"}
+      <td>{entranceRecord.personName + "(" + entranceRecord.rfid + ")"} </td>
+      <td>{entranceRecord.formattedTimestamp}</td>
+      <td>
+        <EntranceRecordAccessCol entranceRecord={entranceRecord} />
       </td>
     </tr>
   );

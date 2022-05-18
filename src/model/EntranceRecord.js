@@ -12,12 +12,20 @@ class EntranceRecord {
     this._access = access;
   }
 
+  get rfid() {
+    return this._rfid;
+  }
+
   get personName() {
     return this._personName;
   }
 
   get timestamp() {
     return this._timestamp;
+  }
+
+  get formattedTimestamp() {
+    return new Date(this._timestamp * 1000).toLocaleString("pt-PT");
   }
 
   get access() {

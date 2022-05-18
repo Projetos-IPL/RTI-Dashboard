@@ -2,16 +2,20 @@ import React, { useState, useEffect } from "react";
 import "./MainScreen.css";
 import EntranceRecordTable from "../../components/EntranceRecordTable/EntranceRecordTable.js";
 import EntranceRecord from "../../../model/EntranceRecord.js";
-import { getData, getDataWithAuthToken } from "../../../utils/requests.js";
+import { getDataWithAuthToken } from "../../../utils/requests.js";
 import { API_ROUTES } from "../../../config.js";
 import { handleException } from "../../../utils/handleException.js";
+import { getUsernameFromStorage } from "../../../utils/utils.js";
+import LastEntranceRecordCard from "../../components/LastEntranceRecordCard/LastEntranceRecordCard.js";
 
 function MainScreen() {
+  const [loading, setLoading] = useState(true);
   const [entranceRecords, setEntranceRecords] = useState(
     new Array(new EntranceRecord(null, null, null, null))
   );
 
   useEffect(() => {
+    setLoading(true);
     getDataWithAuthToken(API_ROUTES.ENTRANCE_LOGS_API_ROUTE, {
       showPersonName: 1,
       latest: 5,
@@ -24,11 +28,12 @@ function MainScreen() {
               r["rfid"],
               r["person_name"],
               r["timestamp"],
-              r["access"]
+              r["access"] === "1"
             )
         );
         console.log(data);
         setEntranceRecords(data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -41,7 +46,7 @@ function MainScreen() {
       <div className="container mt-5">
         <h2>Dashboard</h2>
         <h5 className="text-muted fw-light fst-italic">
-          Bem-vindo, <span id="username" />
+          Bem-vindo, {getUsernameFromStorage()}
         </h5>
 
         <div className="row" style={{ marginTop: "4rem" }}>
@@ -94,13 +99,13 @@ function MainScreen() {
               <i className="fa-solid fa-clock-rotate-left me-2" /> Últimos 5
               Movimentos
             </h4>
-            <EntranceRecordTable entranceRecords={entranceRecords} />
+            <EntranceRecordTable
+              loading={loading}
+              entranceRecords={entranceRecords}
+            />
           </div>
           <div className="col-md-4">
-            <div className="card text-center">
-              <div className="card-header">Último Movimento</div>
-              <div className="py-3 card-body" id="ultimoMovimento-card" />
-            </div>
+            <LastEntranceRecordCard />
           </div>
         </div>
       </div>
