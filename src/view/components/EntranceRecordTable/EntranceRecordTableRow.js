@@ -1,13 +1,13 @@
 import EntranceRecordAccessCol from "./EntranceRecordAccessCol.js";
 
-function EntranceRecordTableRow({ index, entranceRecord }) {
+function EntranceRecordTableRow({ index, record }) {
   return (
-    <tr>
+    <tr key={index}>
       <td>{index}</td>
-      <td>{entranceRecord.personName + "(" + entranceRecord.rfid + ")"} </td>
-      <td>{entranceRecord.formattedTimestamp}</td>
+      <td>{record.personName + " (" + record.rfid + ")"} </td>
+      <td>{record.formattedTimestamp}</td>
       <td>
-        <EntranceRecordAccessCol entranceRecord={entranceRecord} />
+        <EntranceRecordAccessCol entranceRecord={record} />
       </td>
     </tr>
   );

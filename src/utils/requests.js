@@ -1,5 +1,6 @@
 import { AUTH_TOKEN_HEADER_NAME } from "./constants";
 import authUtils from "./authUtils";
+import { LOCAL_URL } from "../config.js";
 
 /**
  * Função para efetuar um pedido http
@@ -84,13 +85,10 @@ export async function getData(url = "", urlParams = {}) {
  * @returns {Promise<Response<*, Record<string, *>, number>>}
  */
 export async function getDataWithAuthToken(url = "", urlParams = {}) {
-  return request(
-    url,
-    urlParams,
-    "GET",
-    { [AUTH_TOKEN_HEADER_NAME]: authUtils.getAuthTokenFromStorage() },
-    null
-  );
+  let headers = {
+    [AUTH_TOKEN_HEADER_NAME]: authUtils.getAuthTokenFromStorage(),
+  };
+  return request(url, urlParams, "GET", headers, null);
 }
 
 const requests = {

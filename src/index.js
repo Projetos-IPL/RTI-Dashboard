@@ -9,6 +9,7 @@ import { APP_ROUTES } from "./config";
 
 import "react-toastify/dist/ReactToastify.min.css";
 import { ToastContainer } from "react-toastify";
+import PeopleScreen from "./view/screens/PeopleScreen/PeopleScreen.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -16,10 +17,7 @@ root.render(
     <ToastContainer />
     <Router>
       <Routes>
-        <Route
-          path={APP_ROUTES.DASHBOARD_ROUTE + "/*"}
-          element={<Dashboard />}
-        />
+        <Route path="*" element={<Dashboard />} />
         <Route path={APP_ROUTES.LOGIN_SCREEN_ROUTE} element={<LoginScreen />} />
       </Routes>
     </Router>

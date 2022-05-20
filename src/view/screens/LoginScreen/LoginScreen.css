@@ -31,10 +31,6 @@
     display: none;
 }
 
-#loading-spinner {
-    display: none; /*Não mostrar por defeito */
-}
-
 .Toastify__toast-body {
     text-align: left;
 }

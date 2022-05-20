@@ -25,7 +25,7 @@ function Navbar() {
             />
             <NavbarItem
               text="Pessoas"
-              route={APP_ROUTES.MAIN_SCREEN_ROUTE}
+              route={APP_ROUTES.PEOPLE_SCREEN_ROUTE}
               navigate={navigate}
             />
             <NavbarItem

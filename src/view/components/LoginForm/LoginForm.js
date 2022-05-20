@@ -1,6 +1,7 @@
 import React, { createRef } from "react";
+import { BarLoader } from "react-spinners";
 
-function LoginForm({ submitAction }) {
+function LoginForm({ loading, submitAction }) {
   const username = createRef();
   const password = createRef();
 
@@ -44,8 +45,11 @@ function LoginForm({ submitAction }) {
         className="w-100 btn btn-lg btn-dark mt-4"
       >
         {"Entrar"}
-        <i id="loading-spinner" className="fa-solid fa-spinner fa-spin-pulse" />
       </button>
+      <BarLoader
+        loading={loading}
+        css="display: block; margin: 0 auto; margin-top: 1.5rem; width: available;"
+      />
       <p className="mt-5 mb-3 text-muted">
         &copy; 2022 - Afonso Santos, Iúri Raimundo
       </p>
