@@ -3,6 +3,7 @@ name: 🚀 Deploy website on push
 
 env:
   CI: false
+  NODE_ENV: PROD
 
 jobs:
   web-deploy:
