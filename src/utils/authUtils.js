@@ -1,6 +1,6 @@
 import constants from "./constants";
-import { getData, getDataWithAuthToken, postData } from "./requests";
-import { API_URL, AUTH_API_ROUTE } from "../config";
+import { getDataWithAuthToken, postData } from "./requests";
+import { AUTH_API_ROUTE } from "../config";
 import { handleException } from "./handleException.js";
 import {
   redirectToLoginScreen,

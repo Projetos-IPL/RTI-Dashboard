@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from "react";
-import PeopleRecordTable from "../../components/Tables/PeopleRecordTable/PeopleRecordTable.js";
 import { getDataWithAuthToken } from "../../../utils/requests.js";
 import { API_ROUTES } from "../../../config.js";
-import Person from "../../../model/Person.js";
+import Permission from "../../../model/Permission.js";
 import { handleException } from "../../../utils/handleException.js";
-import { PeopleDataProvider } from "./PeopleDataContext.js";
+import { PermissionsDataContext } from "./PermissionsDataContext.js";
 import AddPersonModal from "../../components/Modals/AddPersonModal.js";
 import { Button, Col, Row } from "react-bootstrap";
+import PermissionRecordTable from "../../components/Tables/PermissionRecordTable/PermissionRecordTable.js";
 
-function PeopleScreen() {
+// TODO Desenvolver
+function PermissionsScreen() {
   const [loading, setLoading] = useState(true);
   const [showAddPersonModal, setShowAddPersonModal] = useState(false);
-  const [peopleRecords, setPeopleRecords] = useState();
+  const [permissionRecords, setPermissionRecords] = useState();
   const [outdatedRecords, setOutdatedRecords] = useState(true);
 
   // Fetch people data
   useEffect(() => {
     if (!outdatedRecords) return;
     setLoading(true);
-    getDataWithAuthToken(API_ROUTES.PEOPLE_API_ROUTE)
+    getDataWithAuthToken(API_ROUTES.PERMISSIONS_API_ROUTE)
       .then((res) => {
         let records = res.data.map(
-          (record) =>
-            new Person(record.rfid, record.first_name, record.last_name)
+          (record) => new Permission(record.permission_id, record.rfid)
         );
-        setPeopleRecords(records);
+        setPermissionRecords(records);
         setOutdatedRecords(false);
       })
       .catch((err) => handleException(err))
@@ -37,9 +37,9 @@ function PeopleScreen() {
   };
 
   return (
-    <PeopleDataProvider
+    <PermissionsDataContext
       value={{
-        peopleRecords,
+        outdatedRecords,
         setOutdatedRecords,
       }}
     >
@@ -49,26 +49,28 @@ function PeopleScreen() {
             <h2 className="float-start">Pessoas</h2>
           </Col>
           <Col>
-            <Button
-              onClick={addPersonButtonClickHandler}
-              variant="dark"
-              className="float-end"
-            >
-              <i className="fas fa-user me-2" />
+            <Button variant="dark" className="float-end">
+              <i
+                onClick={addPersonButtonClickHandler}
+                className="fas fa-user me-2"
+              />
               Adicionar Pessoa
             </Button>
           </Col>
         </Row>
         <div className="mt-5">
-          <PeopleRecordTable loading={loading} peopleRecords={peopleRecords} />
+          <PermissionRecordTable
+            loading={loading}
+            permissionRecords={permissionRecords}
+          />
         </div>
       </main>
       <AddPersonModal
         showModal={showAddPersonModal}
         setShowModal={setShowAddPersonModal}
       />
-    </PeopleDataProvider>
+    </PermissionsDataContext>
   );
 }
 
-export default PeopleScreen;
+export default PermissionsScreen;

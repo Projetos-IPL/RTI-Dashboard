@@ -4,8 +4,6 @@ import "./LoginScreen.css";
 import { handleException } from "../../../utils/handleException";
 import { APP_ROUTES } from "../../../config";
 import authUtils from "../../../utils/authUtils.js";
-import LoadingSpinner from "../../components/Loading/LoadingSpinner.js";
-import { RingLoader } from "react-spinners";
 
 function LoginScreen() {
   const [loading, setLoading] = useState(false);

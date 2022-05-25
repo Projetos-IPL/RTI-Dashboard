@@ -9,21 +9,24 @@ import LastEntranceRecordCard from "../../components/LastEntranceRecordCard/Last
 import DashboardStatsBoard from "../../components/DashboardStatsBoard/DashboardStatsBoard.js";
 
 function MainScreen() {
-  const [loading, setLoading] = useState(true);
+  const [entranceRecordsLoading, setEntranceRecordsLoading] = useState(true);
+
+  const [outdatedEntranceRecords, setOutdatedEntranceRecords] = useState(true);
 
   const [entranceRecords, setEntranceRecords] = useState(
     new Array(new EntranceRecord(null, null, null, null))
   );
 
+  // Fetch entrance records
   useEffect(() => {
-    setLoading(true);
+    if (!outdatedEntranceRecords) return;
+    setEntranceRecordsLoading(true);
     getDataWithAuthToken(API_ROUTES.ENTRANCE_LOGS_API_ROUTE, {
       showPersonName: 1,
       latest: 5,
     })
-      .then((res) => res.json())
-      .then((data) => {
-        data = data.map(
+      .then((res) => {
+        let entranceRecordsArr = res.data.map(
           (r) =>
             new EntranceRecord(
               r["rfid"],
@@ -32,13 +35,14 @@ function MainScreen() {
               r["access"] === "1"
             )
         );
-        setEntranceRecords(data);
-        setLoading(false);
+        setEntranceRecords(entranceRecordsArr);
+        setEntranceRecordsLoading(false);
+        setOutdatedEntranceRecords(false);
       })
       .catch((err) => {
         handleException(err.message);
       });
-  }, []);
+  }, [outdatedEntranceRecords]);
 
   return (
     <main>
@@ -57,7 +61,7 @@ function MainScreen() {
               Movimentos
             </h4>
             <EntranceRecordTable
-              loading={loading}
+              loading={entranceRecordsLoading}
               entranceRecords={entranceRecords}
             />
           </div>

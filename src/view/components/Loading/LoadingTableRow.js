@@ -1,4 +1,3 @@
-import LoadingSpinner from "./LoadingSpinner.js";
 import { BarLoader } from "react-spinners";
 import React from "react";
 

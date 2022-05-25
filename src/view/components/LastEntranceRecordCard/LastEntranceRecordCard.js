@@ -16,14 +16,13 @@ function LastEntranceRecordCard() {
       latest: 1,
       showPersonName: 1,
     })
-      .then((res) => res.json())
-      .then((data) => {
+      .then((res) => {
         setRecord(
           new EntranceRecord(
-            data[0].rfid,
-            data[0].person_name,
-            data[0].timestamp,
-            data[0].access === "1"
+            res.data[0].rfid,
+            res.data[0].person_name,
+            res.data[0].timestamp,
+            res.data[0].access === "1"
           )
         );
         setLoading(false);

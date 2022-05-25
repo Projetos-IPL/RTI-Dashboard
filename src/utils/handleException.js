@@ -6,6 +6,7 @@ import { TOAST_ERROR_CONFIG } from "./toastConfigs";
  * @param e
  */
 export function handleException(e) {
+  console.log(e);
   // Apresentar notificação do erro
   toast.error(e.message, TOAST_ERROR_CONFIG);
 }

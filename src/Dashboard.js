@@ -16,6 +16,7 @@ import Navbar from "./view/components/Navbar/Navbar";
 
 import MainScreen from "./view/screens/MainScreen/MainScreen";
 import PeopleScreen from "./view/screens/PeopleScreen/PeopleScreen.js";
+import PermissionsScreen from "./view/screens/PermissionsScreen/PermissionsScreen.js";
 
 function Dashboard() {
   // Validar a sessão a cada refrescamento da aplicação, se a sessão for inválida
@@ -24,7 +25,6 @@ function Dashboard() {
     authUtils
       .validateSession()
       .then((res) => {
-        console.log(res);
         if (!res) {
           authUtils.logout();
         }
@@ -50,6 +50,10 @@ function Dashboard() {
         <Route
           path={APP_ROUTES.PEOPLE_SCREEN_ROUTE}
           element={<PeopleScreen />}
+        />
+        <Route
+          path={APP_ROUTES.PERMISSIONS_SCREEN_ROUTE}
+          element={<PermissionsScreen />}
         />
       </Routes>
     </>

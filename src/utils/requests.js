@@ -1,6 +1,5 @@
 import { AUTH_TOKEN_HEADER_NAME } from "./constants";
 import authUtils from "./authUtils";
-import { LOCAL_URL } from "../config.js";
 
 /**
  * Função para efetuar um pedido http
@@ -39,7 +38,19 @@ export async function request(
     url = url + "?" + new URLSearchParams(urlParams);
   }
 
-  return await fetch(url, init);
+  return await fetch(url, init).then(async (res) => {
+    let data = await res.json().then((data) => data);
+
+    if (res.ok) {
+      return {
+        statusCode: res.status,
+        ok: res.ok,
+        data,
+      };
+    } else {
+      throw new Error(data.message);
+    }
+  });
 }
 
 /**
@@ -54,9 +65,9 @@ export async function postData(url = "", data = {}) {
 
 /**
  * Função para efetuar um pedido http post com o token de autenticação no cabeçalho
- * @param {String} url URL
- * @param {Object | null}data Dados
- * @returns {Promise<Response<*, Record<string, *>, number>>}
+ * @param url
+ * @param data
+ * @returns {Promise<{data: Object | Array : Object, ok: boolean, statusCode: int}>}
  */
 export async function postDataWithAuthToken(url = "", data = {}) {
   return request(
@@ -68,6 +79,37 @@ export async function postDataWithAuthToken(url = "", data = {}) {
   );
 }
 
+/**
+ * Função para efetuar pedidos PUT com o token de autenticação nos http headers.
+ * @param url
+ * @param body
+ * @returns {Promise<{data: Object | Array : Object, ok: boolean, statusCode: int}>}
+ */
+export async function putRequestWithAuthToken(url, body) {
+  return request(
+    url,
+    null,
+    "PUT",
+    { [AUTH_TOKEN_HEADER_NAME]: authUtils.getAuthTokenFromStorage() },
+    body
+  );
+}
+
+/**
+ * Função para efetuar pedidos DELETE com o token de autenticação nos http headers.
+ * @param url
+ * @param body
+ * @returns {Promise<{data: Object | Array : Object, ok: boolean, statusCode: int}>}
+ */
+export async function deleteRequestWithAuthToken(url, body) {
+  return request(
+    url,
+    null,
+    "DELETE",
+    { [AUTH_TOKEN_HEADER_NAME]: authUtils.getAuthTokenFromStorage() },
+    body
+  );
+}
 /**
  * Função para efetuar um pedido http get
  * @param url URL
@@ -97,6 +139,7 @@ const requests = {
   postDataWithAuthToken,
   getData,
   getDataWithAuthToken,
+  deleteRequestWithAuthToken,
 };
 
 export default requests;
