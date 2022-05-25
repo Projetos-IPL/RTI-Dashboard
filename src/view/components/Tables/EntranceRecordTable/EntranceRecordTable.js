@@ -1,6 +1,6 @@
 import React from "react";
 import EntranceRecordTableRow from "./EntranceRecordTableRow.js";
-import RecordTable from "../Tables/RecordTable/RecordTable.js";
+import RecordTable from "../RecordTable/RecordTable.js";
 
 /** Tabela para registos de movimento
  * @param {boolean} loading

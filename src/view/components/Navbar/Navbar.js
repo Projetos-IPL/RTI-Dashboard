@@ -30,7 +30,7 @@ function Navbar() {
             />
             <NavbarItem
               text="Permissões"
-              route={APP_ROUTES.MAIN_SCREEN_ROUTE}
+              route={APP_ROUTES.PERMISSIONS_SCREEN_ROUTE}
               navigate={navigate}
             />
             <NavbarItem

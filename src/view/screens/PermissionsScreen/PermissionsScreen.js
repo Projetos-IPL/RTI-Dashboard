@@ -3,15 +3,15 @@ import { getDataWithAuthToken } from "../../../utils/requests.js";
 import { API_ROUTES } from "../../../config.js";
 import Permission from "../../../model/Permission.js";
 import { handleException } from "../../../utils/handleException.js";
-import { PermissionsDataContext } from "./PermissionsDataContext.js";
-import AddPersonModal from "../../components/Modals/AddPersonModal.js";
+import { PermissionsDataProvider } from "./PermissionsDataContext.js";
 import { Button, Col, Row } from "react-bootstrap";
 import PermissionRecordTable from "../../components/Tables/PermissionRecordTable/PermissionRecordTable.js";
+import AddPermissionFormModal from "../../components/Modals/AddPermissionFormModal.js";
 
 // TODO Desenvolver
 function PermissionsScreen() {
   const [loading, setLoading] = useState(true);
-  const [showAddPersonModal, setShowAddPersonModal] = useState(false);
+  const [showAddPermissionModal, setShowAddPermissionModal] = useState(false);
   const [permissionRecords, setPermissionRecords] = useState();
   const [outdatedRecords, setOutdatedRecords] = useState(true);
 
@@ -31,13 +31,13 @@ function PermissionsScreen() {
       .finally(() => setLoading(false));
   }, [outdatedRecords]);
 
-  const addPersonButtonClickHandler = (e) => {
+  const addPermissionBtnClickHandler = (e) => {
     e.preventDefault();
-    setShowAddPersonModal(true);
+    setShowAddPermissionModal(true);
   };
 
   return (
-    <PermissionsDataContext
+    <PermissionsDataProvider
       value={{
         outdatedRecords,
         setOutdatedRecords,
@@ -46,15 +46,16 @@ function PermissionsScreen() {
       <main className="container mt-5">
         <Row>
           <Col>
-            <h2 className="float-start">Pessoas</h2>
+            <h2 className="float-start">Permissões</h2>
           </Col>
           <Col>
-            <Button variant="dark" className="float-end">
-              <i
-                onClick={addPersonButtonClickHandler}
-                className="fas fa-user me-2"
-              />
-              Adicionar Pessoa
+            <Button
+              onClick={addPermissionBtnClickHandler}
+              variant="dark"
+              className="float-end"
+            >
+              <i className="fas fa-user me-2" />
+              Adicionar Permissão
             </Button>
           </Col>
         </Row>
@@ -65,11 +66,11 @@ function PermissionsScreen() {
           />
         </div>
       </main>
-      <AddPersonModal
-        showModal={showAddPersonModal}
-        setShowModal={setShowAddPersonModal}
+      <AddPermissionFormModal
+        showModal={showAddPermissionModal}
+        setShowModal={setShowAddPermissionModal}
       />
-    </PermissionsDataContext>
+    </PermissionsDataProvider>
   );
 }
 

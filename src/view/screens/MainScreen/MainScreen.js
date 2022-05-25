@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import EntranceRecordTable from "../../components/EntranceRecordTable/EntranceRecordTable.js";
+import EntranceRecordTable from "../../components/Tables/EntranceRecordTable/EntranceRecordTable.js";
 import EntranceRecord from "../../../model/EntranceRecord.js";
 import { getDataWithAuthToken } from "../../../utils/requests.js";
 import { API_ROUTES } from "../../../config.js";

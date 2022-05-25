@@ -1,3 +1,5 @@
+import * as Yup from "yup";
+
 class Permission {
   /**
    * @param permissionId
@@ -16,5 +18,12 @@ class Permission {
     return this._rfid;
   }
 }
+
+export const AddPermissionFormSchema = Yup.object().shape({
+  rfid: Yup.string()
+    .min(5, "O rfid tem de ter no mínimo 5 carateres.")
+    .max(20, "O rfid não pode ter mais do que 20 carateres.")
+    .required("rfid tem de ser preenchido."),
+});
 
 export default Permission;

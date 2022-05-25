@@ -8,7 +8,7 @@ import PermissionRecordTableRow from "./PermissionRecordTableRow.js";
  * @returns {JSX.Element}
  */
 function PeopleRecordTable({ loading, permissionRecords }) {
-  const tableHeaders = ["Id", "rfid"];
+  const tableHeaders = ["ID", "RFID", "Ações"];
 
   return (
     <RecordTable
