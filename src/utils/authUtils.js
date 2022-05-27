@@ -65,16 +65,14 @@ export async function login(username, password) {
 
   // Se a resposta for de sucesso, armazenar token, nome de utilizador e timestamp de login na local storage
   if (res.ok) {
-    const data = await res.json().then((data) => data);
-
     // Armazenar token de autenticação
-    authUtils.storeAuthTokenInStorage(data.token);
+    authUtils.storeAuthTokenInStorage(res.data.token);
 
     // Armazenar username
-    storeUsernameInStorage(data.username);
+    storeUsernameInStorage(res.data.username);
 
     // Armazenar hora de login
-    storeLoginTimestampInStorage(data.timestamp);
+    storeLoginTimestampInStorage(res.data.timestamp);
   }
 
   return res.ok;

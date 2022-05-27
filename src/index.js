@@ -17,7 +17,11 @@ root.render(
     <ToastContainer />
     <Router>
       <Routes>
-        <Route path="*" element={<Dashboard />} />
+        <Route
+          exact
+          path={APP_ROUTES.DASHBOARD_ROUTE + "*"}
+          element={<Dashboard />}
+        />
         <Route path={APP_ROUTES.LOGIN_SCREEN_ROUTE} element={<LoginScreen />} />
       </Routes>
     </Router>

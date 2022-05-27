@@ -35,12 +35,12 @@ function Navbar() {
             />
             <NavbarItem
               text="Movimentos"
-              route={APP_ROUTES.MAIN_SCREEN_ROUTE}
+              route={APP_ROUTES.ENTRANCES_SCREEN_ROUTE}
               navigate={navigate}
             />
             <NavbarItem
               text="Histórico Sensores"
-              route={APP_ROUTES.MAIN_SCREEN_ROUTE}
+              route={APP_ROUTES.SENSOR_LOG_SCREEN_ROUTE}
               navigate={navigate}
             />
             <NavbarItem

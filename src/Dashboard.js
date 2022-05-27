@@ -17,6 +17,8 @@ import Navbar from "./view/components/Navbar/Navbar";
 import MainScreen from "./view/screens/MainScreen/MainScreen";
 import PeopleScreen from "./view/screens/PeopleScreen/PeopleScreen.js";
 import PermissionsScreen from "./view/screens/PermissionsScreen/PermissionsScreen.js";
+import EntrancesScreen from "./view/screens/EntrancesScreen/EntrancesScreen.js";
+import SensorLogScreen from "./view/screens/SensorLogScreen/SensorLogScreen.js";
 
 function Dashboard() {
   // Validar a sessão a cada refrescamento da aplicação, se a sessão for inválida
@@ -54,6 +56,14 @@ function Dashboard() {
         <Route
           path={APP_ROUTES.PERMISSIONS_SCREEN_ROUTE}
           element={<PermissionsScreen />}
+        />
+        <Route
+          path={APP_ROUTES.ENTRANCES_SCREEN_ROUTE}
+          element={<EntrancesScreen />}
+        />
+        <Route
+          path={APP_ROUTES.SENSOR_LOG_SCREEN_ROUTE}
+          element={<SensorLogScreen />}
         />
       </Routes>
     </>

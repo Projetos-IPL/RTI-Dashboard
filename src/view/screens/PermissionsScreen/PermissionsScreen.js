@@ -8,7 +8,6 @@ import { Button, Col, Row } from "react-bootstrap";
 import PermissionRecordTable from "../../components/Tables/PermissionRecordTable/PermissionRecordTable.js";
 import AddPermissionFormModal from "../../components/Modals/AddPermissionFormModal.js";
 
-// TODO Desenvolver
 function PermissionsScreen() {
   const [loading, setLoading] = useState(true);
   const [showAddPermissionModal, setShowAddPermissionModal] = useState(false);
