@@ -37,13 +37,21 @@ function SensorLogScreen() {
 
     if (filterBySensorType.filter !== 0) {
       urlParams.sensorType = filterBySensorType.filter;
+    } else {
+      delete urlParams.sensorType;
     }
 
     getDataWithAuthToken(API_ROUTES.SENSOR_LOG_API_ROUTE, urlParams)
       .then((res) => {
         let sensorLogRecords = res.data.map(
           (r) =>
-            new SensorLog(r["sensor_id"], r["name"], r["value"], r["timestamp"])
+            new SensorLog(
+              r["sensor_log_id"],
+              r["sensor_id"],
+              r["name"],
+              r["value"],
+              r["timestamp"]
+            )
         );
         setSensorLogRecords(sensorLogRecords);
         console.log("Sensor logs fetched!");

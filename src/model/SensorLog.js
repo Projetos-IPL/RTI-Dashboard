@@ -1,9 +1,14 @@
 class SensorLog {
-  constructor(sensorId, sensorName, value, timestamp) {
+  constructor(sensorLogId, sensorId, sensorName, value, timestamp) {
+    this._sensorLogId = sensorLogId;
     this._sensorId = sensorId;
     this._sensorName = sensorName;
     this._value = value;
     this._timestamp = timestamp;
+  }
+
+  get sensorLogId() {
+    return this._sensorLogId;
   }
 
   get sensorId() {

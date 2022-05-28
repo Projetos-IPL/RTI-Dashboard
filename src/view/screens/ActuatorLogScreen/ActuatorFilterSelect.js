@@ -25,7 +25,7 @@ function ActuatorFilterSelect({ filter, setFilter }) {
   const handleActuatorFilterChange = () => {
     setFilter({
       prevFilter: filter,
-      filter: actuatorFilterSelectRef.current.value,
+      filter: parseInt(actuatorFilterSelectRef.current.value),
     });
   };
 

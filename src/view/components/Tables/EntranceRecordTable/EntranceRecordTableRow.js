@@ -3,7 +3,7 @@ import EntranceRecordAccessCol from "./EntranceRecordAccessCol.js";
 function EntranceRecordTableRow({ index, record }) {
   return (
     <tr key={index}>
-      <td>{index}</td>
+      <td>{record.entranceLogId}</td>
       <td>{record.personName + " (" + record.rfid + ")"} </td>
       <td>{record.formattedTimestamp}</td>
       <td>

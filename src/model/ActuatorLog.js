@@ -1,8 +1,13 @@
 class ActuatorLog {
-  constructor(actuatorId, actuatorName, value, timestamp) {
+  constructor(actuatorLogId, actuatorId, actuatorName, value, timestamp) {
+    this._actuatorLogId = actuatorLogId;
     this._actuatorId = actuatorId;
     this._actuatorName = actuatorName;
     this._timestamp = timestamp;
+  }
+
+  get actuatorLogId() {
+    return this._actuatorLogId;
   }
 
   get actuatorId() {

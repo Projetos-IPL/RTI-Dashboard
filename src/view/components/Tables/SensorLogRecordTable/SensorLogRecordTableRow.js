@@ -7,7 +7,7 @@
 function SensorLogRecordTableRow({ index, record }) {
   return (
     <tr key={index}>
-      <td>{index}</td>
+      <td>{record.sensorLogId}</td>
       <td>{record.sensorName}</td>
       <td>{record.value}</td>
       <td>{record.formattedTimestamp}</td>

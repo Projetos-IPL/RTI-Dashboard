@@ -42,7 +42,13 @@ function ActuatorLogScreen() {
     getDataWithAuthToken(API_ROUTES.ACTUATOR_LOG_API_ROUTE, urlParams)
       .then((res) => {
         let actuatorLogRecords = res.data.map(
-          (r) => new ActuatorLog(r["actuator_id"], r["name"], r["timestamp"])
+          (r) =>
+            new ActuatorLog(
+              r["actuator_log_id"],
+              r["actuator_id"],
+              r["name"],
+              r["timestamp"]
+            )
         );
         setActuatorLogRecords(actuatorLogRecords);
         console.log("Actuator logs fetched!");

@@ -18,12 +18,13 @@ function EntrancesScreen() {
     setLoading(true);
     getDataWithAuthToken(API_ROUTES.ENTRANCE_LOGS_API_ROUTE, {
       showPersonName: 1,
-      latest: 5,
     })
       .then((res) => {
+        console.log(res.data);
         let entranceRecordsArr = res.data.map(
           (r) =>
             new EntranceRecord(
+              r["entrance_log_id"],
               r["rfid"],
               r["person_name"],
               r["timestamp"],

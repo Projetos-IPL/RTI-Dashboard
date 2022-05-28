@@ -19,6 +19,7 @@ function LastEntranceRecordCard() {
       .then((res) => {
         setRecord(
           new EntranceRecord(
+            res.data[0].entrance_log_id,
             res.data[0].rfid,
             res.data[0].person_name,
             res.data[0].timestamp,

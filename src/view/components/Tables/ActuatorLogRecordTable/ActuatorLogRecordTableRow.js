@@ -7,7 +7,7 @@
 function ActuatorLogRecordTableRow({ index, record }) {
   return (
     <tr key={index}>
-      <td>{index}</td>
+      <td>{record.actuatorLogId}</td>
       <td>{record.actuatorName}</td>
       <td>{record.formattedTimestamp}</td>
     </tr>

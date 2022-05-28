@@ -25,7 +25,7 @@ function SensorFilterSelect({ filter, setFilter }) {
   const handleSensorFilterChange = () => {
     setFilter({
       prevFilter: filter,
-      filter: sensorFilterSelectRef.current.value,
+      filter: parseInt(sensorFilterSelectRef.current.value),
     });
   };
 

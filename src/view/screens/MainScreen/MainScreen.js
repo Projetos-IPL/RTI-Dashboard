@@ -29,6 +29,7 @@ function MainScreen() {
         let entranceRecordsArr = res.data.map(
           (r) =>
             new EntranceRecord(
+              r["entrance_log_id"],
               r["rfid"],
               r["person_name"],
               r["timestamp"],
