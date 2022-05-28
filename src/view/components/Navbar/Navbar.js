@@ -45,7 +45,7 @@ function Navbar() {
             />
             <NavbarItem
               text="Histórico Atuadores"
-              route={APP_ROUTES.MAIN_SCREEN_ROUTE}
+              route={APP_ROUTES.ACTUATOR_LOG_SCREEN_ROUTE}
               navigate={navigate}
             />
           </ul>

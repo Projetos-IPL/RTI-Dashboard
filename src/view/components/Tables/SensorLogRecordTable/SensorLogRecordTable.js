@@ -4,7 +4,7 @@ import SensorLogRecordTableRow from "./SensorLogRecordTableRow.js";
 
 /** Tabela para registos de sensor
  * @param {boolean} loading
- * @param {Array<EntranceRecord>} entranceRecords
+ * @param {Array<SensorLog>} sensorLogRecords
  * @returns {JSX.Element}
  */
 function SensorLogRecordTable({ loading, sensorLogRecords }) {
