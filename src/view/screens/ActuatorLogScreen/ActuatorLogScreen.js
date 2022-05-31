@@ -46,6 +46,7 @@ function ActuatorLogScreen() {
             new ActuatorLog(
               r["actuator_log_id"],
               r["actuator_id"],
+              r["actuator_state"],
               r["name"],
               r["timestamp"]
             )

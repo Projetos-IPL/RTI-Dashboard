@@ -8,7 +8,7 @@ import ActuatorLogRecordTableRow from "./ActuatorLogRecordTableRow.js";
  * @returns {JSX.Element}
  */
 function ActuatorLogRecordTable({ loading, actuatorLogRecords }) {
-  const tableHeaders = ["#", "Atuador", "Data/Hora"];
+  const tableHeaders = ["#", "Atuador", "Estado", "Data/Hora"];
 
   return (
     <RecordTable
