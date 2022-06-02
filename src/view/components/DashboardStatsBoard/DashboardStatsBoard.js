@@ -27,9 +27,12 @@ function DashboardStatsBoard() {
   }, []);
 
   return (
-    <div className="row" style={{ marginTop: "4rem" }}>
-      <div className="row text-white justify-content-around">
-        <div className="col-md-3 me-5 bg-secondary shadow-sm">
+    <div className="row">
+      <div
+        className="row text-white justify-content-around"
+        style={{ marginTop: "2rem" }}
+      >
+        <div className="col-md-6 bg-secondary shadow-sm p-2">
           <div className="row p-4 align-items-center">
             <div className="col-md-6 text-center">
               <i className="fas fa-person fa-4x" />
@@ -43,7 +46,7 @@ function DashboardStatsBoard() {
             </div>
           </div>
         </div>
-        <div className="col-md-3 me-5 bg-dark shadow-sm">
+        <div className="col-md-6 bg-dark shadow-sm p-2">
           <div className="row p-4 align-items-center">
             <div className="col-md-6 text-center">
               <i className="fas fa-clock-rotate-left fa-4x" />
@@ -53,11 +56,13 @@ function DashboardStatsBoard() {
                 {!loading && allowedMovements}
                 <ClipLoader loading={loading} color="#ffffff" />
               </h2>
-              <h6 className="mb-0">Movimentos Permitidos</h6>
+              <h6 className="mb-0">Mov. Permitidos</h6>
             </div>
           </div>
         </div>
-        <div className="col-md-3 bg-danger shadow-sm">
+      </div>
+      <div className="row text-white mt-4 justify-content-around">
+        <div className="col-md-6 bg-danger shadow-sm p-2">
           <div className="row p-4 align-items-center">
             <div className="col-md-6 text-center">
               <i className="fas fa-ban fa-4x" />
@@ -67,7 +72,21 @@ function DashboardStatsBoard() {
                 {!loading && blockedMovements}
                 <ClipLoader loading={loading} color="#ffffff" />
               </h2>
-              <h6 className="mb-0">Movimentos Negados</h6>
+              <h6 className="mb-0">Mov. Negados</h6>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-6 bg-success shadow-sm p-2">
+          <div className="row p-4 align-items-center">
+            <div className="col-md-6 text-center">
+              <i className="fas fa-ban fa-4x" />
+            </div>
+            <div className="col-md-6">
+              <h2 className="mb-0" id="counter-movimentosNegados">
+                {!loading && blockedMovements}
+                <ClipLoader loading={loading} color="#ffffff" />
+              </h2>
+              <h6 className="mb-0">Mov. Negados</h6>
             </div>
           </div>
         </div>

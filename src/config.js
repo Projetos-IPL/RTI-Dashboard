@@ -3,7 +3,7 @@
 // API
 export const LOCAL_URL = "http://localhost:81/api";
 export const PROD_URL = "https://rti-api.afonsosantos.me/api";
-export const API_URL = process.env.NODE_ENV === "development" ? LOCAL_URL : PROD_URL;
+export const API_URL = PROD_URL;
 export const AUTH_API_ROUTE = API_URL + "/auth.php";
 export const ENTRANCE_LOGS_API_ROUTE = API_URL + "/movimentos.php";
 export const PEOPLE_API_ROUTE = API_URL + "/pessoas.php";
