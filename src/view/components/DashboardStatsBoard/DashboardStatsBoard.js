@@ -11,6 +11,7 @@ function DashboardStatsBoard() {
   const [registeredPeople, setRegisteredPeople] = useState(0);
   const [allowedMovements, setAllowedMovements] = useState(0);
   const [blockedMovements, setBlockMovements] = useState(0);
+  const [permissionCount, setPermissionCount] = useState(0);
 
   useEffect(() => {
     // Fetch data
@@ -21,6 +22,7 @@ function DashboardStatsBoard() {
         setRegisteredPeople(res.data[0].people_count);
         setAllowedMovements(res.data[0].successful_entrance_logs);
         setBlockMovements(res.data[0].unsuccessful_entrance_logs);
+        setPermissionCount(res.data[0].permission_count);
       })
       .catch((err) => handleException(err))
       .finally(() => setLoading(false));
@@ -29,7 +31,7 @@ function DashboardStatsBoard() {
   return (
     <div className="row">
       <div
-        className="row text-white justify-content-around"
+        className="row text-white justify-content-around mb-4"
         style={{ marginTop: "2rem" }}
       >
         <div className="col-md-6 bg-secondary shadow-sm p-2">
@@ -42,26 +44,26 @@ function DashboardStatsBoard() {
                 {!loading && registeredPeople}
                 <ClipLoader loading={loading} color="#ffffff" />
               </h2>
-              <h6 className="mb-0">Pessoas Registadas</h6>
+              <h6 className="mt-1">Pessoas Registadas</h6>
             </div>
           </div>
         </div>
         <div className="col-md-6 bg-dark shadow-sm p-2">
           <div className="row p-4 align-items-center">
             <div className="col-md-6 text-center">
-              <i className="fas fa-clock-rotate-left fa-4x" />
+              <i className="fas fa-person-circle-check fa-4x" />
             </div>
             <div className="col-md-6">
               <h2 className="mb-0" id="counter-movimentosPermitidos">
-                {!loading && allowedMovements}
+                {!loading && permissionCount}
                 <ClipLoader loading={loading} color="#ffffff" />
               </h2>
-              <h6 className="mb-0">Mov. Permitidos</h6>
+              <h6 className="mt-1">Pessoas com Permissão</h6>
             </div>
           </div>
         </div>
       </div>
-      <div className="row text-white mt-4 justify-content-around">
+      <div className="row text-white justify-content-around">
         <div className="col-md-6 bg-danger shadow-sm p-2">
           <div className="row p-4 align-items-center">
             <div className="col-md-6 text-center">
@@ -72,7 +74,7 @@ function DashboardStatsBoard() {
                 {!loading && blockedMovements}
                 <ClipLoader loading={loading} color="#ffffff" />
               </h2>
-              <h6 className="mb-0">Mov. Negados</h6>
+              <h6 className="mt-1">Mov. Negados</h6>
             </div>
           </div>
         </div>
@@ -83,10 +85,10 @@ function DashboardStatsBoard() {
             </div>
             <div className="col-md-6">
               <h2 className="mb-0" id="counter-movimentosNegados">
-                {!loading && blockedMovements}
+                {!loading && allowedMovements}
                 <ClipLoader loading={loading} color="#ffffff" />
               </h2>
-              <h6 className="mb-0">Mov. Negados</h6>
+              <h6 className="mt-1">Mov. Permitidos</h6>
             </div>
           </div>
         </div>

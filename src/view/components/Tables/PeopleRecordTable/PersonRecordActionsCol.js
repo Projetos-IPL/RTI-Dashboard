@@ -37,7 +37,7 @@ function PersonRecordActionsCol({ record }) {
   return (
     <>
       <Button
-        variant="warning"
+        variant="secondary"
         size="sm"
         onClick={editPersonBtnClickHandler}
         className="me-2"

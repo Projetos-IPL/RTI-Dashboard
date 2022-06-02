@@ -54,7 +54,7 @@ function PeopleScreen() {
               variant="dark"
               className="float-end"
             >
-              <i className="fas fa-user me-2" />
+              <i className="fas fa-user me-3" />
               Adicionar Pessoa
             </Button>
           </Col>

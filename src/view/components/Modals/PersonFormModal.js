@@ -62,8 +62,8 @@ function PersonFormModal({
             return (
               <Form onSubmit={handleSubmit}>
                 <Row className="mb-3">
-                  <Form.Group as={Col} md="4" controlId="validationFirstName">
-                    <Form.Label>First name</Form.Label>
+                  <Form.Group as={Col} md="6" controlId="validationFirstName">
+                    <Form.Label>Primeiro Nome</Form.Label>
                     <Form.Control
                       disabled={editMode}
                       type="text"
@@ -77,7 +77,7 @@ function PersonFormModal({
                       {errors.firstName}
                     </Form.Control.Feedback>
                   </Form.Group>
-                  <Form.Group as={Col} md="4" controlId="validationLastName">
+                  <Form.Group as={Col} md="6" controlId="validationLastName">
                     <Form.Label>Último Nome</Form.Label>
                     <Form.Control
                       disabled={editMode}
@@ -95,21 +95,23 @@ function PersonFormModal({
                 </Row>
 
                 <Row className="mb-3">
-                  <Form.Group controlId="validationRfid" className="mb-3">
-                    <FormLabel>Etiqueta RFID</FormLabel>
-                    <Form.Control
-                      name="rfid"
-                      type="text"
-                      placeholder="Ex: B7 4F 46 01"
-                      value={values.rfid}
-                      onChange={handleChange}
-                      isValid={touched.rfid && !errors.rfid}
-                      isInvalid={errors.rfid}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      {errors.rfid}
-                    </Form.Control.Feedback>
-                  </Form.Group>
+                  <Col md={6}>
+                    <Form.Group controlId="validationRfid" className="mb-3">
+                      <FormLabel>Etiqueta RFID</FormLabel>
+                      <Form.Control
+                        name="rfid"
+                        type="text"
+                        placeholder="Ex: B7 4F 46 01"
+                        value={values.rfid}
+                        onChange={handleChange}
+                        isValid={touched.rfid && !errors.rfid}
+                        isInvalid={errors.rfid}
+                      />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.rfid}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Col>
                 </Row>
 
                 <ModalFooter>

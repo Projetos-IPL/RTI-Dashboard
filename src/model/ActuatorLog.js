@@ -4,7 +4,6 @@ class ActuatorLog {
     actuatorId,
     actuatorState,
     actuatorName,
-    value,
     timestamp
   ) {
     this._actuatorLogId = actuatorLogId;

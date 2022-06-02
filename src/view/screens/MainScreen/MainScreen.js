@@ -48,8 +48,8 @@ function MainScreen() {
   return (
     <main>
       <div className="container mt-5">
-        <h2>Dashboard</h2>
-        <h5 className="text-muted fw-light fst-italic">
+        <h2 className="fw-light">Dashboard</h2>
+        <h5 className="text-muted fw-light">
           Bem-vindo, {getUsernameFromStorage()}
         </h5>
 

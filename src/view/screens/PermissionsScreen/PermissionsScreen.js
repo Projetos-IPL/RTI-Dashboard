@@ -53,7 +53,7 @@ function PermissionsScreen() {
               variant="dark"
               className="float-end"
             >
-              <i className="fas fa-user me-2" />
+              <i className="fas fa-lock me-3" />
               Adicionar Permissão
             </Button>
           </Col>

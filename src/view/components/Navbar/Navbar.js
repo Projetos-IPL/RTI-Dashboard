@@ -7,16 +7,22 @@ import LogoutButton from "./LogoutButton.js";
 import BrandLogoItem from "./BrandLogoItem.js";
 import NavbarDropdownMenuButton from "./NavbarDropdownMenuButton.js";
 
+import { NavDropdown } from "react-bootstrap";
+import NavbarItemDropdown from "./NavbarItemDropdown.js";
+
 function Navbar() {
   const navigate = useNavigate();
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
         <BrandLogoItem navigate={navigate} />
         <NavbarDropdownMenuButton />
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <div
+          className="collapse navbar-collapse ms-3"
+          id="navbarSupportedContent"
+        >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <NavbarItem
               text="Inicio"
@@ -38,16 +44,19 @@ function Navbar() {
               route={APP_ROUTES.ENTRANCES_SCREEN_ROUTE}
               navigate={navigate}
             />
-            <NavbarItem
-              text="Histórico Sensores"
-              route={APP_ROUTES.SENSOR_LOG_SCREEN_ROUTE}
-              navigate={navigate}
-            />
-            <NavbarItem
-              text="Histórico Atuadores"
-              route={APP_ROUTES.ACTUATOR_LOG_SCREEN_ROUTE}
-              navigate={navigate}
-            />
+
+            <NavDropdown title="Histórico">
+              <NavbarItemDropdown
+                text="Sensores"
+                route={APP_ROUTES.SENSOR_LOG_SCREEN_ROUTE}
+                navigate={navigate}
+              />
+              <NavbarItemDropdown
+                text="Atuadores"
+                route={APP_ROUTES.ACTUATOR_LOG_SCREEN_ROUTE}
+                navigate={navigate}
+              />
+            </NavDropdown>
           </ul>
           <ul className="navbar-nav ms-auto">
             <LogoutButton />

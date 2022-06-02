@@ -70,10 +70,10 @@ function ActuatorLogScreen() {
     >
       <main className="container mt-5">
         <Row className="justify-content-between">
-          <Col sm={8}>
-            <h2 className="float-start">Registos de atuador</h2>
+          <Col sm={9}>
+            <h2 className="float-start">Registos de Atuador</h2>
           </Col>
-          <Col sm={4}>
+          <Col sm={3}>
             <ActuatorFilterSelect
               setFilter={setFilterByActuatorType}
               filter={filterByActuatorType}

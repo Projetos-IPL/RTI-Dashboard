@@ -38,7 +38,7 @@ function LastEntranceRecordCard() {
       <div className="py-3 card-body">
         {!loading && (
           <div className="py-3 card-body text-center">
-            <Row>
+            <Row className="text-center">
               <Col md={4}>
                 <img
                   src="https://randomuser.me/api/portraits/women/79.jpg"

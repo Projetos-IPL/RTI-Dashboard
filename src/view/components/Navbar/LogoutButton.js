@@ -9,7 +9,7 @@ function LogoutButton() {
   return (
     <li className="nav-item">
       <button
-        className="btn btn-sm btn-outline-secondary"
+        className="btn btn-sm btn-outline-light"
         id="logout-button"
         onClick={logoutButtonClickHandler}
       >

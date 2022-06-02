@@ -27,8 +27,6 @@ import { AddPermissionFormSchema } from "../../../model/Permission.js";
  * @param showModal
  * @param setShowModal
  * @param record
- * @param handleSubmit
- * @param {boolean} editMode
  * @returns {JSX.Element}
  * @constructor
  */
@@ -99,7 +97,7 @@ function AddPermissionFormModal({ showModal, setShowModal }) {
               <Form onSubmit={handleSubmit}>
                 <Row className="mb-3">
                   <Form.Group controlId="validationPerson">
-                    <Form.Label>First name</Form.Label>
+                    <Form.Label>Pessoa</Form.Label>
                     <Form.Select
                       name="rfid"
                       isValid={touched.rfid && !errors.rfid}
