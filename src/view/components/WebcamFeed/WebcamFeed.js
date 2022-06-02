@@ -14,7 +14,7 @@ function WebcamFeed() {
           />
 
           <Button variant="success" className="mt-4">
-            <i className="fa-solid fa-camera me-1"></i> Tirar Foto
+            <i className="fa-solid fa-camera me-1" /> Tirar Foto
           </Button>
         </Card.Text>
       </Card.Body>

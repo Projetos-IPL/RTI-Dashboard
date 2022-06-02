@@ -7,8 +7,9 @@ import { handleException } from "../../../utils/handleException.js";
 import { getUsernameFromStorage } from "../../../utils/utils.js";
 import LastEntranceRecordCard from "../../components/LastEntranceRecordCard/LastEntranceRecordCard.js";
 import DashboardStatsBoard from "../../components/DashboardStatsBoard/DashboardStatsBoard.js";
-import { Col, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import WebcamFeed from "../../components/WebcamFeed/WebcamFeed.js";
+import SensorCard from "../../components/SensorCard/SensorCard.js";
 
 function MainScreen() {
   const [entranceRecordsLoading, setEntranceRecordsLoading] = useState(true);
@@ -47,7 +48,7 @@ function MainScreen() {
 
   return (
     <main>
-      <div className="container mt-5">
+      <Container className="mt-5">
         <h2 className="fw-light">Dashboard</h2>
         <h5 className="text-muted fw-light">
           Bem-vindo, {getUsernameFromStorage()}
@@ -57,7 +58,7 @@ function MainScreen() {
           <Col md={8}>
             <DashboardStatsBoard />
 
-            <div className="my-5"></div>
+            <div className="my-5" />
 
             <h4>
               <i className="fa-solid fa-clock-rotate-left me-2" />
@@ -71,11 +72,15 @@ function MainScreen() {
 
           <Col md={4}>
             <LastEntranceRecordCard />
-            <div className="my-5"></div>
+            <div className="my-5" />
             <WebcamFeed />
           </Col>
         </Row>
-      </div>
+
+        <Row>
+          <SensorCard />
+        </Row>
+      </Container>
     </main>
   );
 }
