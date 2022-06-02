@@ -1,15 +1,4 @@
 import React, { useContext } from "react";
-import {
-  Modal,
-  Button,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-  ModalTitle,
-  FormLabel,
-  FormControl,
-  Form,
-} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { API_ROUTES } from "../../../config.js";
 import { postDataWithAuthToken } from "../../../utils/requests.js";
@@ -17,8 +6,6 @@ import { toast } from "react-toastify";
 import { TOAST_SUCCESS_CONFIG } from "../../../utils/toastConfigs.js";
 import { handleException } from "../../../utils/handleException.js";
 import PeopleDataContext from "../../screens/PeopleScreen/PeopleDataContext.js";
-import { Formik, ErrorMessage, Field } from "formik";
-import * as Yup from "yup";
 import PersonFormModal from "./PersonFormModal.js";
 
 /**
