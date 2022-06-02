@@ -7,7 +7,7 @@ function NavbarItem({ text, route, navigate }) {
 
   return (
     <li className="nav-item">
-      <a className="nav-link" onClick={navbarItemClickHandler} href={""}>
+      <a className="nav-link" onClick={navbarItemClickHandler}>
         {text}
       </a>
     </li>

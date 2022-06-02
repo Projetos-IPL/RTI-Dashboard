@@ -32,21 +32,19 @@ function LoginScreen() {
   };
 
   return (
-    <div className="bg-light">
+    <div className="bg-light login-screen">
       <Row>
         <Col className="bg-dark text-light text-center p-5">
-          <i className="fa-solid fa-building-shield fa-4x mb-4" />
+          <i className="fa-solid fa-building-shield fa-5x mb-4" />
           <h2 className="fw-normal">Sistema de Segurança</h2>
           <small>UC de Redes e Tecnologias da Internet - 2022</small>
+          <br />
+          <small className="fst-italic">Afonso Santos, Iúri Raimundo</small>
         </Col>
       </Row>
 
       <Row>
-        <Col
-          sm={12}
-          style={{ maxWidth: "330px" }}
-          className="mt-5 p-4 m-auto vh-100"
-        >
+        <Col sm={12} style={{ maxWidth: "330px" }} className="mt-5 p-4 m-auto">
           <div id="error-banner" role="alert"></div>
           <LoginForm submitAction={loginFormSubmitAction} loading={loading} />
         </Col>
