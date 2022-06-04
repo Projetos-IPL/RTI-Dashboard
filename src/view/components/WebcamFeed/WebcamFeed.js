@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Card } from "react-bootstrap";
+import { API_ROUTES } from "../../../config.js";
 
 function WebcamFeed() {
   return (
@@ -8,7 +9,7 @@ function WebcamFeed() {
       <Card.Body>
         <Card.Text>
           <img
-            src="http://10.20.228.61:8080/"
+            src={API_ROUTES.RPI_URL + "feed"}
             alt="Webcam"
             style={{ maxWidth: "100%" }}
           />
