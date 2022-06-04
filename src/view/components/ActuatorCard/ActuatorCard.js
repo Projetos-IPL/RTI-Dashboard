@@ -6,29 +6,30 @@ import SensorLog from "../../../model/SensorLog.js";
 import { handleException } from "../../../utils/handleException.js";
 import { ClipLoader } from "react-spinners";
 import { TypeOf } from "yup";
+import ActuatorLog from "../../../model/ActuatorLog.js";
 
 /**
- * @param sensorType
+ * @param actuatorType
  * @returns {JSX.Element}
  * @constructor
  */
-function SensorCard({ sensorType }) {
-  if (typeof sensorType != "number" && typeof sensorType != "string") {
-    throw new Error("Prop sensorType must be a number or string!");
+function ActuatorCard({ actuatorType }) {
+  if (typeof actuatorType != "number" && typeof actuatorType != "string") {
+    throw new Error("Prop actuatorType must be a number or string!");
   }
 
-  const [latestSensorLogRecord: SensorLog, setLatestSensorLogRecord] = useState(
-    new SensorLog(null, null, null, null)
+  const [latestActuatorLog: ActuatorLog, setLatestActuatorLog] = useState(
+    new ActuatorLog(null, null, null, null)
   );
 
   const [loading: boolean, setLoading] = useState(true);
 
   // Obter último registo de sensor
   useEffect(() => {
-    getDataWithAuthToken(API_ROUTES.SENSOR_LOG_API_ROUTE, {
-      sensorType: sensorType,
+    getDataWithAuthToken(API_ROUTES.ACTUATOR_LOG_API_ROUTE, {
+      actuatorType: actuatorType,
       latest: 1,
-      showSensorName: 1,
+      showActuatorName: 1,
     })
       .then((res) => {
         let data = res.data[0];
@@ -38,37 +39,46 @@ function SensorCard({ sensorType }) {
           return;
         }
 
-        let latestLog = new SensorLog(
-          data.sensor_log_id,
-          data.sensor_id,
+        let latestLog = new ActuatorLog(
+          data.actuator_log_id,
+          data.actuator_id,
+          data.actuatorState,
           data.name,
-          data.value,
           data.timestamp
         );
-        setLatestSensorLogRecord(latestLog);
+        setLatestActuatorLog(latestLog);
       })
       .catch((err) => handleException(err))
       .finally(() => setLoading(false));
   }, []);
 
   // Não renderizar nada se não existir registo
-
-  if (!latestSensorLogRecord.sensorId) {
+  if (!latestActuatorLog.actuatorId) {
     return <></>;
   } else {
     return (
       <Card style={{ width: "22rem" }}>
         <Card.Body>
-          <Card.Title>{latestSensorLogRecord.sensorName}</Card.Title>
+          <Card.Title>{latestActuatorLog.actuatorName}</Card.Title>
           <ClipLoader loading={loading} css="display: block; margin: 0 auto;" />
         </Card.Body>
         <Card.Footer>
-          Último registo: {latestSensorLogRecord.formattedTimestamp} -{" "}
-          {latestSensorLogRecord.value}
+          Último registo: {latestActuatorLog.formattedTimestamp} -{" "}
+          <span
+            className={`text-${
+              latestActuatorLog.actuatorState ? "success" : "danger"
+            }`}
+          >
+            {latestActuatorLog.actuatorState ? (
+              <i className="fas fa-check" />
+            ) : (
+              <i className="fas fa-ban" />
+            )}
+          </span>
         </Card.Footer>
       </Card>
     );
   }
 }
 
-export default SensorCard;
+export default ActuatorCard;
