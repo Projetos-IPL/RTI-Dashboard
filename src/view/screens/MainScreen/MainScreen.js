@@ -7,7 +7,7 @@ import { handleException } from "../../../utils/handleException.js";
 import { getUsernameFromStorage } from "../../../utils/utils.js";
 import LastEntranceRecordCard from "../../components/LastEntranceRecordCard/LastEntranceRecordCard.js";
 import DashboardStatsBoard from "../../components/DashboardStatsBoard/DashboardStatsBoard.js";
-import { Col, Container, Row } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import WebcamFeed from "../../components/WebcamFeed/WebcamFeed.js";
 import SensorCard from "../../components/SensorCard/SensorCard.js";
 import { act } from "react-dom/test-utils";
@@ -100,23 +100,27 @@ function MainScreen() {
           </Col>
         </Row>
 
-        <Row>
-          <h4>
-            <i className="fa-solid fa-cloud me-2" />
-            Últimas leituras dos sensores
-          </h4>
-          <div
+        <Card className="mb-3 mt-3">
+          <Card.Header>
+            <h4>
+              <i className="fa-solid fa-cloud me-2" />
+              Últimas leituras dos sensores
+            </h4>
+          </Card.Header>
+          <Card.Body
             style={{
               display: "flex",
               flexWrap: "wrap",
               alignItems: "left",
+              justifyContent: "space-between",
+              gap: "50px",
             }}
           >
             {sensorTypes.map((sensorType, index) => (
               <SensorCard sensorType={sensorType.sensor_id} key={index} />
             ))}
-          </div>
-        </Row>
+          </Card.Body>
+        </Card>
 
         <Row>
           <h4>

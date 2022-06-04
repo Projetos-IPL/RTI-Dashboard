@@ -57,7 +57,7 @@ function SensorCard({ sensorType }) {
     return <></>;
   } else {
     return (
-      <Card style={{ width: "22rem" }}>
+      <Card style={{ width: "20rem" }}>
         <Card.Body>
           <Card.Title>{latestSensorLogRecord.sensorName}</Card.Title>
           <ClipLoader loading={loading} css="display: block; margin: 0 auto;" />
