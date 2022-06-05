@@ -44,6 +44,11 @@ function Navbar() {
               route={APP_ROUTES.ENTRANCES_SCREEN_ROUTE}
               navigate={navigate}
             />
+            <NavbarItem
+              text="Fotos"
+              route={APP_ROUTES.MAIN_SCREEN_ROUTE}
+              navigate={navigate}
+            />
 
             <NavDropdown title="Histórico">
               <NavbarItemDropdown
