@@ -1,12 +1,12 @@
-import { Button, Card } from "react-bootstrap";
-import { useEffect, useState } from "react";
-import { getDataWithAuthToken } from "../../../utils/requests.js";
-import { API_ROUTES } from "../../../config.js";
-import SensorLog from "../../../model/SensorLog.js";
-import { handleException } from "../../../utils/handleException.js";
-import { ClipLoader } from "react-spinners";
-import { TypeOf } from "yup";
-import ActuatorLog from "../../../model/ActuatorLog.js";
+import { Card } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { getDataWithAuthToken } from '../../../utils/requests.js';
+import { API_ROUTES } from '../../../config.js';
+import SensorLog from '../../../model/SensorLog.js';
+import { handleException } from '../../../utils/handleException.js';
+import { ClipLoader } from 'react-spinners';
+import { TypeOf } from 'yup';
+import ActuatorLog from '../../../model/ActuatorLog.js';
 
 /**
  * @param actuatorType
@@ -14,13 +14,11 @@ import ActuatorLog from "../../../model/ActuatorLog.js";
  * @constructor
  */
 function ActuatorCard({ actuatorType }) {
-  if (typeof actuatorType != "number" && typeof actuatorType != "string") {
-    throw new Error("Prop actuatorType must be a number or string!");
+  if (typeof actuatorType != 'number' && typeof actuatorType != 'string') {
+    throw new Error('Prop actuatorType must be a number or string!');
   }
 
-  const [latestActuatorLog: ActuatorLog, setLatestActuatorLog] = useState(
-    new ActuatorLog(null, null, null, null)
-  );
+  const [latestActuatorLog: ActuatorLog, setLatestActuatorLog] = useState(new ActuatorLog(null, null, null, null));
 
   const [loading: boolean, setLoading] = useState(true);
 
@@ -35,7 +33,7 @@ function ActuatorCard({ actuatorType }) {
         let data = res.data[0];
 
         // Se não existirem registo não atualizar state
-        if (typeof data === "undefined") {
+        if (typeof data === 'undefined') {
           return;
         }
 
@@ -53,29 +51,27 @@ function ActuatorCard({ actuatorType }) {
   }, []);
 
   // Não renderizar nada se não existir registo
+
   if (!latestActuatorLog.actuatorId) {
     return <></>;
   } else {
     return (
-      <Card style={{ width: "22rem" }}>
+      <Card>
         <Card.Body>
-          <Card.Title>{latestActuatorLog.actuatorName}</Card.Title>
-          <ClipLoader loading={loading} css="display: block; margin: 0 auto;" />
+          <h5>
+            <i className='fas fa-circle-info me-2' />
+            {latestActuatorLog.actuatorName}
+          </h5>
+          <p>Último registo: {latestActuatorLog.formattedTimestamp}</p>
+          <ClipLoader loading={loading} css='display: block; margin: 0 auto;' />
+
+          <h6>
+            Estado:
+            <span className={`ms-2 text-${latestActuatorLog.actuatorState ? 'success' : 'danger'}`}>
+              {latestActuatorLog.actuatorState ? <i className='fas fa-check' /> : <i className='fas fa-ban' />}
+            </span>
+          </h6>
         </Card.Body>
-        <Card.Footer>
-          Último registo: {latestActuatorLog.formattedTimestamp} -{" "}
-          <span
-            className={`text-${
-              latestActuatorLog.actuatorState ? "success" : "danger"
-            }`}
-          >
-            {latestActuatorLog.actuatorState ? (
-              <i className="fas fa-check" />
-            ) : (
-              <i className="fas fa-ban" />
-            )}
-          </span>
-        </Card.Footer>
       </Card>
     );
   }
