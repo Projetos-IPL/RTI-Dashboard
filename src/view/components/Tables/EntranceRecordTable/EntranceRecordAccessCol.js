@@ -6,7 +6,7 @@
 function EntranceRecordAccessCol({ entranceRecord }) {
   return (
     <span className={`text-${entranceRecord.access ? "success" : "danger"}`}>
-      <i className={`fas fa-${entranceRecord.access ? "check" : "ban"} me-1`} />
+      <i className={`fas fa-${entranceRecord.access ? "check" : "ban"} me-2`} />
       {entranceRecord.access ? "Permitido" : "Negado"}
     </span>
   );

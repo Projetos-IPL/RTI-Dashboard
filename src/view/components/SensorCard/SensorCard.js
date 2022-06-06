@@ -12,7 +12,7 @@ import { TypeOf } from "yup";
  * @returns {JSX.Element}
  * @constructor
  */
-function SensorCard({ sensorType }) {
+function SensorCard({ sensorType, sensorName }) {
   if (typeof sensorType != "number" && typeof sensorType != "string") {
     throw new Error("Prop sensorType must be a number or string!");
   }
@@ -51,22 +51,29 @@ function SensorCard({ sensorType }) {
       .finally(() => setLoading(false));
   }, []);
 
-  // Não renderizar nada se não existir registo
-
   return (
     <Card>
       <Card.Body>
         <h5>
           <i className="fas fa-circle-info me-2" />
-          {latestSensorLogRecord.sensorName}
+          {sensorName}
         </h5>
-        <p>Último registo: {latestSensorLogRecord.formattedTimestamp}</p>
+        <p>
+          Último registo:{" "}
+          {latestSensorLogRecord.timestamp
+            ? latestSensorLogRecord.formattedTimestamp
+            : "N/A"}
+        </p>
         <h6>
           Valor:
-          <span className="fw-normal ms-1">{latestSensorLogRecord.value}</span>
+          <span className="fw-normal ms-1">
+            {latestSensorLogRecord.value ? latestSensorLogRecord.value : "N/A"}
+          </span>
         </h6>
         <ClipLoader loading={loading} css="display: block; margin: 0 auto;" />
       </Card.Body>
+
+      {console.log(typeof latestSensorLogRecord.formattedTimestamp)}
     </Card>
   );
 }

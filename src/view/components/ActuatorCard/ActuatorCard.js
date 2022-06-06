@@ -13,7 +13,7 @@ import ActuatorLog from "../../../model/ActuatorLog.js";
  * @returns {JSX.Element}
  * @constructor
  */
-function ActuatorCard({ actuatorType }) {
+function ActuatorCard({ actuatorType, actuatorName }) {
   if (typeof actuatorType != "number" && typeof actuatorType != "string") {
     throw new Error("Prop actuatorType must be a number or string!");
   }
@@ -52,31 +52,39 @@ function ActuatorCard({ actuatorType }) {
       .finally(() => setLoading(false));
   }, []);
 
-  // Não renderizar nada se não existir registo
-
   return (
     <Card>
       <Card.Body>
         <h5>
           <i className="fas fa-circle-info me-2" />
-          {latestActuatorLog.actuatorName}
+          {actuatorName}
         </h5>
-        <p>Último registo: {latestActuatorLog.formattedTimestamp}</p>
+        <p>
+          Último registo:{" "}
+          {latestActuatorLog.timestamp
+            ? latestActuatorLog.formattedTimestamp
+            : "N/A"}
+        </p>
+
         <ClipLoader loading={loading} css="display: block; margin: 0 auto;" />
 
         <h6>
           Estado:
-          <span
-            className={`ms-1 text-${
-              latestActuatorLog.actuatorState ? "success" : "danger"
-            }`}
-          >
-            {latestActuatorLog.actuatorState ? (
-              <i className="fas fa-check" />
-            ) : (
-              <i className="fas fa-ban" />
-            )}
-          </span>
+          {latestActuatorLog.actuatorState === null ? (
+            <span className="fw-normal ms-1">N/A</span>
+          ) : (
+            <span
+              className={`ms-1 text-${
+                latestActuatorLog.actuatorState ? "success" : "danger"
+              }`}
+            >
+              {latestActuatorLog.actuatorState ? (
+                <i className="fas fa-check" />
+              ) : (
+                <i className="fas fa-ban" />
+              )}
+            </span>
+          )}
         </h6>
       </Card.Body>
     </Card>

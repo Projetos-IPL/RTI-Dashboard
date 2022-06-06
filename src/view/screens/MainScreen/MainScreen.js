@@ -12,6 +12,8 @@ import WebcamFeed from "../../components/WebcamFeed/WebcamFeed.js";
 import SensorCard from "../../components/SensorCard/SensorCard.js";
 import ActuatorCard from "../../components/ActuatorCard/ActuatorCard.js";
 
+import "./MainScreen.css";
+
 function MainScreen() {
   const [entranceRecordsLoading: boolean, setEntranceRecordsLoading] =
     useState(true);
@@ -110,7 +112,11 @@ function MainScreen() {
 
             {sensorTypes.map((sensorType, index) => (
               <Col md="12" className="mb-3">
-                <SensorCard sensorType={sensorType.sensor_id} key={index} />
+                <SensorCard
+                  sensorType={sensorType.sensor_id}
+                  sensorName={sensorType.name}
+                  key={index}
+                />
               </Col>
             ))}
           </Col>
@@ -125,6 +131,7 @@ function MainScreen() {
               <Col md="12" className="mb-3">
                 <ActuatorCard
                   actuatorType={actuatorType.actuator_id}
+                  actuatorName={actuatorType.name}
                   key={index}
                 />
               </Col>
