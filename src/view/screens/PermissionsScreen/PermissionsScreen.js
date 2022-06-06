@@ -44,17 +44,17 @@ function PermissionsScreen() {
     >
       <main className="container mt-5">
         <Row>
-          <Col>
+          <Col xs={3}>
             <h2 className="float-start">Permissões</h2>
           </Col>
-          <Col>
+          <Col xs={9}>
             <Button
               onClick={addPermissionBtnClickHandler}
               variant="dark"
               className="float-end"
             >
-              <i className="fas fa-lock me-3" />
-              Adicionar Permissão
+              <i className="fas fa-plus me-3" />
+              Adicionar
             </Button>
           </Col>
         </Row>

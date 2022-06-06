@@ -45,17 +45,17 @@ function PeopleScreen() {
     >
       <main className="container mt-5">
         <Row>
-          <Col>
+          <Col xs={3}>
             <h2 className="float-start">Pessoas</h2>
           </Col>
-          <Col>
+          <Col xs={9}>
             <Button
               onClick={addPersonButtonClickHandler}
               variant="dark"
               className="float-end"
             >
-              <i className="fas fa-user me-3" />
-              Adicionar Pessoa
+              <i className="fas fa-plus me-3" />
+              Adicionar
             </Button>
           </Col>
         </Row>

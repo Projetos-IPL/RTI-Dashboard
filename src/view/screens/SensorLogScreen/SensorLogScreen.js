@@ -72,10 +72,10 @@ function SensorLogScreen() {
     >
       <main className="container mt-5">
         <Row className="justify-content-between">
-          <Col sm={9}>
+          <Col md={9} xs={12} className="mb-2">
             <h2 className="float-start">Registos de Sensor</h2>
           </Col>
-          <Col sm={3} className="align-middle mb-0">
+          <Col md={3} xs={12} className="align-middle mb-0">
             <SensorFilterSelect
               setFilter={setFilterBySensorType}
               filter={filterBySensorType}
