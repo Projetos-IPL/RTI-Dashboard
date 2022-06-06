@@ -20,6 +20,7 @@ import PermissionsScreen from "./view/screens/PermissionsScreen/PermissionsScree
 import EntrancesScreen from "./view/screens/EntrancesScreen/EntrancesScreen.js";
 import SensorLogScreen from "./view/screens/SensorLogScreen/SensorLogScreen.js";
 import ActuatorLogScreen from "./view/screens/ActuatorLogScreen/ActuatorLogScreen.js";
+import ImageScreen from "./view/screens/ImageScreen/ImageScreen.js";
 
 function Dashboard() {
   // Validar a sessão a cada refrescamento da aplicação, se a sessão for inválida
@@ -69,6 +70,10 @@ function Dashboard() {
         <Route
           path={APP_ROUTES.ACTUATOR_LOG_SCREEN_ROUTE}
           element={<ActuatorLogScreen />}
+        />
+        <Route
+          path={APP_ROUTES.ENTRANCE_LOG_IMAGES_SCREEN_ROUTE}
+          element={<ImageScreen />}
         />
       </Routes>
     </>

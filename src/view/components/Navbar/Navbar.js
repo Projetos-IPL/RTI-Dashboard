@@ -46,7 +46,7 @@ function Navbar() {
             />
             <NavbarItem
               text="Fotos"
-              route={APP_ROUTES.MAIN_SCREEN_ROUTE}
+              route={APP_ROUTES.ENTRANCE_LOG_IMAGES_SCREEN_ROUTE}
               navigate={navigate}
             />
 

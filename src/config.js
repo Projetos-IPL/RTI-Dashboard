@@ -14,6 +14,7 @@ export const ACTUATOR_LOG_API_ROUTE = API_URL + "/registosDeAtuador.php";
 export const VIEWS_API_ROUTE = API_URL + "/views.php";
 export const SENSOR_TYPES_API_ROUTE = API_URL + "/sensorTypes.php";
 export const ACTUATOR_TYPES_API_ROUTE = API_URL + "/actuatorTypes.php";
+export const ENTRANCE_LOGS_IMAGES_API_ROUTE = API_URL + "/imagensMovimento.php";
 
 export const API_ROUTES = {
   AUTH_API_ROUTE,
@@ -26,6 +27,7 @@ export const API_ROUTES = {
   SENSOR_TYPES_API_ROUTE,
   ACTUATOR_TYPES_API_ROUTE,
   RPI_URL,
+  ENTRANCE_LOGS_IMAGES_API_ROUTE,
 };
 
 // Aplicação
@@ -37,6 +39,7 @@ export const PERMISSIONS_SCREEN_ROUTE = "/permissoes";
 export const ENTRANCES_SCREEN_ROUTE = "/movimentos";
 export const SENSOR_LOG_SCREEN_ROUTE = "/registosDeSensor";
 export const ACTUATOR_LOG_SCREEN_ROUTE = "/registosDeAtuador";
+export const ENTRANCE_LOG_IMAGES_SCREEN_ROUTE = "/imagensDeMovimento";
 
 export const APP_ROUTES = {
   DASHBOARD_ROUTE,
@@ -47,4 +50,5 @@ export const APP_ROUTES = {
   ENTRANCES_SCREEN_ROUTE,
   SENSOR_LOG_SCREEN_ROUTE,
   ACTUATOR_LOG_SCREEN_ROUTE,
+  ENTRANCE_LOG_IMAGES_SCREEN_ROUTE,
 };
