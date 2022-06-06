@@ -1,11 +1,10 @@
-import { Button, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { getDataWithAuthToken } from "../../../utils/requests.js";
 import { API_ROUTES } from "../../../config.js";
 import SensorLog from "../../../model/SensorLog.js";
 import { handleException } from "../../../utils/handleException.js";
 import { ClipLoader } from "react-spinners";
-import { TypeOf } from "yup";
 
 /**
  * @param sensorType

@@ -19,8 +19,9 @@ function LoginForm({ loading, submitAction }) {
   return (
     <React.Fragment>
       <form>
-        <div className="form-group mb-3">
-          <label htmlFor="username-input" className="mb-2">
+        <div className="form-group mb-2">
+          <label htmlFor="username-input" className="my-3">
+            <i className="fas fa-user me-2"></i>
             Utilizador
           </label>
           <input
@@ -32,7 +33,8 @@ function LoginForm({ loading, submitAction }) {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password-input" className="mb-2">
+          <label htmlFor="password-input" className="my-3">
+            <i className="fas fa-key me-2"></i>
             Palavra-Passe
           </label>
           <input
