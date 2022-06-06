@@ -33,7 +33,7 @@ function LastEntranceRecordCard() {
   }, []);
 
   return (
-    <div className="card">
+    <div className="card shadow-sm">
       <div className="card-header">Último Movimento</div>
       <div className="py-3 card-body">
         {!loading && (

@@ -84,14 +84,16 @@ function MainScreen() {
 
             <div className="my-5" />
 
-            <h4>
-              <i className="fa-solid fa-clock-rotate-left me-2" />
-              Últimos 5 Movimentos
-            </h4>
-            <EntranceRecordTable
-              loading={entranceRecordsLoading}
-              entranceRecords={entranceRecords}
-            />
+            <div className="my-4">
+              <h4>
+                <i className="fa-solid fa-clock-rotate-left me-2" />
+                Últimos 5 Movimentos
+              </h4>
+              <EntranceRecordTable
+                loading={entranceRecordsLoading}
+                entranceRecords={entranceRecords}
+              />
+            </div>
           </Col>
 
           <Col md={4}>
