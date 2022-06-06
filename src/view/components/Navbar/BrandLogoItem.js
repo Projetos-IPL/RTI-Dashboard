@@ -8,7 +8,7 @@ function BrandLogoItem({ navigate }) {
 
   return (
     <a className="navbar-brand nav-item" onClick={brandLogoClickHandler}>
-      <i className="fa-solid fa-building-shield me-1" />
+      <i className="fa-solid fa-building-shield me-2" />
       Sistema de Segurança
     </a>
   );

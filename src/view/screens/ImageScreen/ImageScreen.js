@@ -4,8 +4,6 @@ import { Col, Row } from "react-bootstrap";
 import { getDataWithAuthToken } from "../../../utils/requests.js";
 import { API_ROUTES } from "../../../config.js";
 import { handleException } from "../../../utils/handleException.js";
-import ActuatorLog from "../../../model/ActuatorLog.js";
-import ActuatorLogRecordTable from "../../components/Tables/ActuatorLogRecordTable/ActuatorLogRecordTable.js";
 
 function ImageScreen() {
   const [loading, setLoading] = useState(true);
