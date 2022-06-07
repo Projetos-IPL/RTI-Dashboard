@@ -4,7 +4,7 @@ import { API_ROUTES } from "../../../config.js";
 import EntranceRecord from "../../../model/EntranceRecord.js";
 import { handleException } from "../../../utils/handleException.js";
 import { ClipLoader } from "react-spinners";
-import { Col, Container, Row } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 
 function LastEntranceRecordCard() {
   const [loading, setLoading] = useState(true);
@@ -53,62 +53,53 @@ function LastEntranceRecordCard() {
   }, [record]);
 
   return (
-    <div className="card shadow-sm">
-      <div className="card-header bg-dark text-white">Último Movimento</div>
-      <div className="py-3 card-body">
+    <Card className="shadow-sm">
+      <Card.Header className="bg-dark text-white">Último Movimento</Card.Header>
+      <Card.Body className="py-3 card-body">
         {!loading && (
-          <div className="py-3 card-body text-center">
-            <Row className="text-center">
-              <Col md={4}>
-                {!imageLoading &&
-                  (entranceRecordImage.length === 0 ? (
-                    <Container
-                      className="p-4"
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        flexDirection: "column",
-                      }}
-                    >
-                      <i className="fa-solid fa-eye-slash fa-2x" />
-                    </Container>
-                  ) : (
-                    <img
-                      src={
-                        "data:image/jpeg;charset=utf-8;base64," +
-                        entranceRecordImage
-                      }
-                      width="100%"
-                      alt="Imagem do último registo de movimento"
-                    />
-                  ))}
-              </Col>
-              <Col md={8}>
-                <h4 className="card-title">{record.personName}</h4>
-                <small className="text-muted">
-                  {record.formattedTimestamp}
-                </small>
-                <h4 className="mt-3">
-                  <span
-                    className={`badge bg-${
-                      record.access ? "success" : "danger"
-                    }`}
-                  >
-                    <i
-                      className={`fas me-2 fa-${
-                        record.access ? "check" : "ban"
-                      }`}
-                    />
-                    <span>{record.access ? "Permitido" : "Negado"}</span>
-                  </span>
-                </h4>
-              </Col>
-            </Row>
-          </div>
+          <Row className="text-center">
+            <h4 className="card-title">{record.personName}</h4>
+            <small className="text-muted">{record.formattedTimestamp}</small>
+            <h4 className="mt-3">
+              <span
+                className={`badge bg-${record.access ? "success" : "danger"}`}
+              >
+                <i
+                  className={`fas me-2 fa-${record.access ? "check" : "ban"}`}
+                />
+                <span>{record.access ? "Permitido" : "Negado"}</span>
+              </span>
+            </h4>
+            {!imageLoading &&
+              (entranceRecordImage.length === 0 ? (
+                <Container
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    flexDirection: "column",
+                  }}
+                >
+                  <i className="fa-solid fa-eye-slash fa-2x" />
+                </Container>
+              ) : (
+                <img
+                  style={{
+                    maxWidth: "16rem",
+                    margin: "0 auto",
+                    padding: "0",
+                  }}
+                  src={
+                    "data:image/jpeg;charset=utf-8;base64," +
+                    entranceRecordImage
+                  }
+                  alt="Imagem do último registo de movimento"
+                />
+              ))}
+          </Row>
         )}
         <ClipLoader loading={loading} css="display: block; margin: 0 auto;" />
-      </div>
-    </div>
+      </Card.Body>
+    </Card>
   );
 }
 
