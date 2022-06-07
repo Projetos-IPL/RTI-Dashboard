@@ -1,9 +1,6 @@
 import { Button } from "react-bootstrap";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import EntranceImageModal from "../../Modals/EntranceImageModal.js";
-import { getDataWithAuthToken } from "../../../../utils/requests.js";
-import { API_ROUTES } from "../../../../config.js";
-import { handleException } from "../../../../utils/handleException.js";
 
 function EntranceRecordActionCol({ record }) {
   const [showEntranceLogImageModal: boolean, setShowEntranceLogImageModal] =

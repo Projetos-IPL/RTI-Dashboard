@@ -1,5 +1,4 @@
 import {
-  Card,
   Container,
   Modal,
   ModalBody,
@@ -63,6 +62,7 @@ function EntranceImageModal({ showModal, handleClose, entranceRecord }) {
             <img
               src={"data:image/jpeg;charset=utf-8;base64," + image}
               width="100%"
+              alt="Imagem da Webcam"
             />
           ))}
         <ClipLoader loading={loading} css="display: block; margin: 0 auto;" />

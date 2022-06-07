@@ -48,7 +48,9 @@ function ImageScreen() {
                     src={"data:image/jpeg;charset=utf-8;base64," + e.image}
                   />
                   <Card.Body className="p-4">
-                    <Card.Title>Movimento #{e.entrance_log_id}</Card.Title>
+                    <Card.Title className="m-0">
+                      Movimento #{e.entrance_log_id}
+                    </Card.Title>
                   </Card.Body>
                 </Card>
               </Col>

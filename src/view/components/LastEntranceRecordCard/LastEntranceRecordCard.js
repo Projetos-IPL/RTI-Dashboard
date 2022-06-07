@@ -58,9 +58,9 @@ function LastEntranceRecordCard() {
       <Card.Body className="py-3 card-body">
         {!loading && (
           <Row className="text-center">
-            <h4 className="card-title">{record.personName}</h4>
+            <h4>{record.personName}</h4>
             <small className="text-muted">{record.formattedTimestamp}</small>
-            <h4 className="mt-3">
+            <h4 className="my-3">
               <span
                 className={`badge bg-${record.access ? "success" : "danger"}`}
               >
@@ -84,7 +84,7 @@ function LastEntranceRecordCard() {
               ) : (
                 <img
                   style={{
-                    maxWidth: "16rem",
+                    maxWidth: "20rem",
                     margin: "0 auto",
                     padding: "0",
                   }}

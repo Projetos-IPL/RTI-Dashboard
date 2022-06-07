@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Button, ButtonGroup, Card } from "react-bootstrap";
-import { API_ROUTES, APP_ROUTES, IOT_ROUTES } from "../../../config.js";
+import { APP_ROUTES, IOT_ROUTES } from "../../../config.js";
 import { useNavigate } from "react-router-dom";
 import PhotoModal from "../Modals/PhotoModal.js";
-import { getData, postData } from "../../../utils/requests.js";
+import { getData } from "../../../utils/requests.js";
 import { handleException } from "../../../utils/handleException.js";
 
 function WebcamFeed() {
@@ -23,10 +23,6 @@ function WebcamFeed() {
   };
 
   const takePicture = () => {
-    if (showStream) {
-      setShowStreaming(false);
-    }
-
     setShowPictureModal(true);
     setLoading(true);
     getData(IOT_ROUTES.TAKE_PICTURE)
@@ -44,7 +40,7 @@ function WebcamFeed() {
             <img
               alt="Feed da Webcam"
               src={IOT_ROUTES.STREAMING_URL}
-              style={{ maxWidth: "100%", border: "1px solid black" }}
+              style={{ maxWidth: "100%" }}
               className="mb-4"
             />
           )}
@@ -67,6 +63,7 @@ function WebcamFeed() {
           </ButtonGroup>
         </Card.Body>
       </Card>
+
       <PhotoModal
         showModal={showPictureModal}
         loading={loading}
