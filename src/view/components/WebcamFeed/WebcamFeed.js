@@ -1,17 +1,20 @@
 import React from "react";
-import { Button, ButtonGroup, Card, Col, Row } from "react-bootstrap";
-import { ENTRANCE_LOG_IMAGES_SCREEN_ROUTE } from "../../../config.js";
+import { Button, ButtonGroup, Card } from "react-bootstrap";
+import {
+  API_ROUTES,
+  ENTRANCE_LOG_IMAGES_SCREEN_ROUTE,
+} from "../../../config.js";
 
 function WebcamFeed() {
   return (
     <Card className="shadow-sm">
       <Card.Header>Webcam</Card.Header>
       <Card.Body className="my-3">
-        {/*<img
+        <img
           alt="Feed da Webcam"
           src={API_ROUTES.RPI_URL + "feed"}
           style={{ maxWidth: "100%", border: "1px solid black" }}
-        />*/}
+        />
 
         <ButtonGroup>
           <Button variant="danger" size="md">
