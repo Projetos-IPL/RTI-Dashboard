@@ -40,7 +40,7 @@ function ActuatorCard({ actuatorType, actuatorName }) {
         let latestLog = new ActuatorLog(
           data.actuator_log_id,
           data.actuator_id,
-          data.actuatorState,
+          data.actuator_state,
           data.name,
           data.timestamp
         );
@@ -73,10 +73,10 @@ function ActuatorCard({ actuatorType, actuatorName }) {
           ) : (
             <span
               className={`ms-1 text-${
-                latestActuatorLog.actuatorState ? "success" : "danger"
+                parseInt(latestActuatorLog.actuatorState) ? "success" : "danger"
               }`}
             >
-              {latestActuatorLog.actuatorState ? (
+              {parseInt(latestActuatorLog.actuatorState) ? (
                 <i className="fas fa-check" />
               ) : (
                 <i className="fas fa-ban" />

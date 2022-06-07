@@ -20,7 +20,6 @@ function EntrancesScreen() {
       showPersonName: 1,
     })
       .then((res) => {
-        console.log(res.data);
         let entranceRecordsArr = res.data.map(
           (r) =>
             new EntranceRecord(

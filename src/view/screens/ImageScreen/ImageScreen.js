@@ -4,6 +4,7 @@ import { Card, Col, Row } from "react-bootstrap";
 import { getDataWithAuthToken } from "../../../utils/requests.js";
 import { API_ROUTES } from "../../../config.js";
 import { handleException } from "../../../utils/handleException.js";
+import { ClipLoader } from "react-spinners";
 
 function ImageScreen() {
   const [loading, setLoading] = useState(true);
@@ -48,7 +49,6 @@ function ImageScreen() {
                   />
                   <Card.Body className="p-4">
                     <Card.Title>Movimento #{e.entrance_log_id}</Card.Title>
-                    <Card.Text>Data e Hora: 01/01/1000 00:00</Card.Text>
                   </Card.Body>
                 </Card>
               </Col>
@@ -56,6 +56,7 @@ function ImageScreen() {
           })}
         </Row>
       </div>
+      <ClipLoader loading={loading} css="display: block; margin: 0 auto;" />
     </main>
   );
 }

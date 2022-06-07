@@ -3,7 +3,6 @@
 // API
 export const LOCAL_URL = "http://localhost:81/api";
 export const PROD_URL = "https://rti-api.afonsosantos.me/api";
-export const RPI_URL = "http://10.20.228.206:8080/";
 export const API_URL = process.env.NODE_ENV === "dev" ? LOCAL_URL : PROD_URL;
 export const AUTH_API_ROUTE = API_URL + "/auth.php";
 export const ENTRANCE_LOGS_API_ROUTE = API_URL + "/movimentos.php";
@@ -26,7 +25,6 @@ export const API_ROUTES = {
   VIEWS_API_ROUTE,
   SENSOR_TYPES_API_ROUTE,
   ACTUATOR_TYPES_API_ROUTE,
-  RPI_URL,
   ENTRANCE_LOGS_IMAGES_API_ROUTE,
 };
 
@@ -51,4 +49,15 @@ export const APP_ROUTES = {
   SENSOR_LOG_SCREEN_ROUTE,
   ACTUATOR_LOG_SCREEN_ROUTE,
   ENTRANCE_LOG_IMAGES_SCREEN_ROUTE,
+};
+
+// IoT
+export const RPI_URL = "http://10.20.229.193:8080";
+export const STREAMING_URL = RPI_URL + "/feed";
+export const TAKE_PICTURE = RPI_URL + "/photo";
+
+export const IOT_ROUTES = {
+  RPI_URL,
+  STREAMING_URL,
+  TAKE_PICTURE,
 };

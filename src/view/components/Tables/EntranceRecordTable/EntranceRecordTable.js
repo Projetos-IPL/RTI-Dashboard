@@ -8,7 +8,7 @@ import RecordTable from "../RecordTable/RecordTable.js";
  * @returns {JSX.Element}
  */
 function EntranceRecordTable({ loading, entranceRecords }) {
-  const tableHeaders = ["#", "Pessoa", "Data/Hora", "Estado"];
+  const tableHeaders = ["#", "Pessoa", "Data/Hora", "Estado", "Imagem"];
 
   return (
     <RecordTable

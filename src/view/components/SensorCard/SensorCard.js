@@ -71,8 +71,6 @@ function SensorCard({ sensorType, sensorName }) {
         </h6>
         <ClipLoader loading={loading} css="display: block; margin: 0 auto;" />
       </Card.Body>
-
-      {console.log(typeof latestSensorLogRecord.formattedTimestamp)}
     </Card>
   );
 }

@@ -1,4 +1,5 @@
 import EntranceRecordAccessCol from "./EntranceRecordAccessCol.js";
+import EntranceRecordActionCol from "./EntranceRecordActionCol.js";
 
 function EntranceRecordTableRow({ index, record }) {
   return (
@@ -8,6 +9,9 @@ function EntranceRecordTableRow({ index, record }) {
       <td>{record.formattedTimestamp}</td>
       <td>
         <EntranceRecordAccessCol entranceRecord={record} />
+      </td>
+      <td>
+        <EntranceRecordActionCol record={record} />
       </td>
     </tr>
   );

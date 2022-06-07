@@ -106,39 +106,35 @@ function MainScreen() {
         </Row>
 
         <Row className="my-4">
-          <Col md="4">
-            <h4 className="mb-4">
-              <i className="fa-solid fa-cloud me-2" />
-              Estado dos Sensores
-            </h4>
+          <h4 className="mb-4">
+            <i className="fa-solid fa-cloud me-2" />
+            Estado dos Sensores
+          </h4>
 
-            {sensorTypes.map((sensorType, index) => (
-              <Col md="12" className="mb-3">
-                <SensorCard
-                  sensorType={sensorType.sensor_id}
-                  sensorName={sensorType.name}
-                  key={index}
-                />
-              </Col>
-            ))}
-          </Col>
+          {sensorTypes.map((sensorType, index) => (
+            <Col md="4" className="mb-3" key={index}>
+              <SensorCard
+                sensorType={sensorType.sensor_id}
+                sensorName={sensorType.name}
+              />
+            </Col>
+          ))}
+        </Row>
 
-          <Col md="4">
-            <h4 className="mb-4">
-              <i className="fa-solid fa-satellite-dish me-2" />
-              Estado dos Atuadores
-            </h4>
+        <Row className="my-4">
+          <h4 className="mb-4">
+            <i className="fa-solid fa-satellite-dish me-2" />
+            Estado dos Atuadores
+          </h4>
 
-            {actuatorTypes.map((actuatorType, index) => (
-              <Col md="12" className="mb-3">
-                <ActuatorCard
-                  actuatorType={actuatorType.actuator_id}
-                  actuatorName={actuatorType.name}
-                  key={index}
-                />
-              </Col>
-            ))}
-          </Col>
+          {actuatorTypes.map((actuatorType, index) => (
+            <Col md="4" className="mb-3" key={index}>
+              <ActuatorCard
+                actuatorType={actuatorType.actuator_id}
+                actuatorName={actuatorType.name}
+              />
+            </Col>
+          ))}
         </Row>
       </Container>
     </main>
