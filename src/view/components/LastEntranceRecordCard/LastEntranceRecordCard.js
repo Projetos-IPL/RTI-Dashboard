@@ -4,7 +4,7 @@ import { API_ROUTES } from "../../../config.js";
 import EntranceRecord from "../../../model/EntranceRecord.js";
 import { handleException } from "../../../utils/handleException.js";
 import { ClipLoader } from "react-spinners";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import { Card, Container, Row } from "react-bootstrap";
 
 function LastEntranceRecordCard() {
   const [loading, setLoading] = useState(true);
@@ -78,13 +78,14 @@ function LastEntranceRecordCard() {
                     alignItems: "center",
                     flexDirection: "column",
                   }}
+                  className="my-4"
                 >
                   <i className="fa-solid fa-eye-slash fa-2x" />
                 </Container>
               ) : (
                 <img
                   style={{
-                    maxWidth: "20rem",
+                    maxWidth: "90%",
                     margin: "0 auto",
                     padding: "0",
                   }}
