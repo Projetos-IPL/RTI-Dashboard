@@ -32,10 +32,9 @@ function ImageScreen() {
   return (
     <main className="container mt-5">
       <Row className="justify-content-between">
-        <Col sm={9}>
+        <Col>
           <h2 className="float-start">Imagens de Movimentos</h2>
         </Col>
-        <Col sm={3} />
       </Row>
       <div className="mt-5">
         <Row>
@@ -47,9 +46,11 @@ function ImageScreen() {
                     variant="top"
                     src={"data:image/jpeg;charset=utf-8;base64," + e.image}
                   />
+
                   <Card.Body className="p-4">
                     <Card.Title className="m-0">
-                      Movimento #{e.entrance_log_id}
+                      <i className="fas fa-camera fa-lg me-2" /> Movimento{" "}
+                      <span className="fw-normal"> #{e.entrance_log_id}</span>
                     </Card.Title>
                   </Card.Body>
                 </Card>

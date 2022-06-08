@@ -4,7 +4,7 @@ import { API_ROUTES } from "../../../config.js";
 import EntranceRecord from "../../../model/EntranceRecord.js";
 import { handleException } from "../../../utils/handleException.js";
 import { ClipLoader } from "react-spinners";
-import { Card, Container, Row } from "react-bootstrap";
+import { Card, Row } from "react-bootstrap";
 
 function LastEntranceRecordCard() {
   const [loading, setLoading] = useState(true);
@@ -70,36 +70,36 @@ function LastEntranceRecordCard() {
                 <span>{record.access ? "Permitido" : "Negado"}</span>
               </span>
             </h4>
-            {!imageLoading &&
-              (entranceRecordImage.length === 0 ? (
-                <Container
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    flexDirection: "column",
-                  }}
-                  className="my-4"
-                >
-                  <i className="fa-solid fa-eye-slash fa-2x" />
-                </Container>
-              ) : (
-                <img
-                  style={{
-                    maxWidth: "90%",
-                    margin: "0 auto",
-                    padding: "0",
-                  }}
-                  src={
-                    "data:image/jpeg;charset=utf-8;base64," +
-                    entranceRecordImage
-                  }
-                  alt="Imagem do último registo de movimento"
-                />
-              ))}
           </Row>
         )}
+
         <ClipLoader loading={loading} css="display: block; margin: 0 auto;" />
       </Card.Body>
+      <Card.Footer className="p-3">
+        {!imageLoading &&
+          (entranceRecordImage.length === 0 ? (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <i className="fa-solid fa-eye-slash fa-3x p-3" />
+              <h5>Sem foto registada!</h5>
+            </div>
+          ) : (
+            <img
+              style={{
+                maxWidth: "100%",
+              }}
+              src={
+                "data:image/jpeg;charset=utf-8;base64," + entranceRecordImage
+              }
+              alt="Imagem do último registo de movimento"
+            />
+          ))}
+      </Card.Footer>
     </Card>
   );
 }

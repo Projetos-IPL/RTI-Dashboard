@@ -4,12 +4,9 @@
 
 import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { toast } from "react-toastify";
 
 import { APP_ROUTES } from "./config";
 import authUtils from "./utils/authUtils";
-import { getUsernameFromStorage } from "./utils/utils";
-import { TOAST_SUCCESS_CONFIG } from "./utils/toastConfigs";
 import { handleException } from "./utils/handleException.js";
 
 import Navbar from "./view/components/Navbar/Navbar";
@@ -39,12 +36,14 @@ function Dashboard() {
   });
 
   // Mostrar mensagem de bem vindo
+  /*
   useEffect(() => {
     toast.success(
       "Bem vindo, " + getUsernameFromStorage(),
       TOAST_SUCCESS_CONFIG
     );
   }, []);
+  */
 
   return (
     <>

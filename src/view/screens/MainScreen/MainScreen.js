@@ -4,10 +4,9 @@ import EntranceRecord from "../../../model/EntranceRecord.js";
 import { getDataWithAuthToken } from "../../../utils/requests.js";
 import { API_ROUTES } from "../../../config.js";
 import { handleException } from "../../../utils/handleException.js";
-import { getUsernameFromStorage } from "../../../utils/utils.js";
 import LastEntranceRecordCard from "../../components/LastEntranceRecordCard/LastEntranceRecordCard.js";
 import DashboardStatsBoard from "../../components/DashboardStatsBoard/DashboardStatsBoard.js";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import WebcamFeed from "../../components/WebcamFeed/WebcamFeed.js";
 import SensorCard from "../../components/SensorCard/SensorCard.js";
 import ActuatorCard from "../../components/ActuatorCard/ActuatorCard.js";
@@ -74,12 +73,9 @@ function MainScreen() {
     <main>
       <Container className="mt-5">
         <h2 className="fw-light">Dashboard</h2>
-        <h5 className="text-muted fw-light">
-          Bem-vindo, {getUsernameFromStorage()}
-        </h5>
 
         <Row>
-          <Col md={8}>
+          <Col md={8} sm={12}>
             <DashboardStatsBoard />
 
             <div className="my-5" />
@@ -99,9 +95,21 @@ function MainScreen() {
           <Col md={4}>
             <LastEntranceRecordCard />
 
-            <div className="my-5" />
+            <div className="my-4" />
 
             <WebcamFeed />
+
+            <div className="my-4" />
+
+            <Card className="shadow-sm">
+              <Card.Header className="bg-dark text-white">Ações</Card.Header>
+              <Card.Body className="my-3">
+                <Button variant="warning">
+                  <i className="fas fa-lightbulb me-2"></i>
+                  Alternar Luzes
+                </Button>
+              </Card.Body>
+            </Card>
           </Col>
         </Row>
 

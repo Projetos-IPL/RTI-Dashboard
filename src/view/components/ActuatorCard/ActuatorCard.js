@@ -5,9 +5,11 @@ import { API_ROUTES } from "../../../config.js";
 import { handleException } from "../../../utils/handleException.js";
 import { ClipLoader } from "react-spinners";
 import ActuatorLog from "../../../model/ActuatorLog.js";
+import { toast } from "react-toastify";
 
 /**
  * @param actuatorType
+ * @param actuatorName
  * @returns {JSX.Element}
  * @constructor
  */
@@ -44,7 +46,26 @@ function ActuatorCard({ actuatorType, actuatorName }) {
           data.name,
           data.timestamp
         );
+
         setLatestActuatorLog(latestLog);
+
+        if (latestLog.actuatorId === "7" && latestLog.actuatorState === "1") {
+          toast.warn(
+            <div>
+              <h6 className="mb-0 fw-bold">Fumo detetado</h6>
+              <small className="text-muted">Sprinkler ativado</small>
+            </div>,
+            {
+              position: "top-right",
+              autoClose: false,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            }
+          );
+        }
       })
       .catch((err) => handleException(err))
       .finally(() => setLoading(false));

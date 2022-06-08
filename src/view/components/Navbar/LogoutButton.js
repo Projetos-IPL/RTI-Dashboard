@@ -13,7 +13,8 @@ function LogoutButton() {
         id="logout-button"
         onClick={logoutButtonClickHandler}
       >
-        Logout
+        Sair
+        <i className="fa-solid fa-arrow-right-from-bracket ms-2" />
       </button>
     </li>
   );

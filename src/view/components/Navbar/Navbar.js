@@ -9,6 +9,7 @@ import NavbarDropdownMenuButton from "./NavbarDropdownMenuButton.js";
 
 import { NavDropdown } from "react-bootstrap";
 import NavbarItemDropdown from "./NavbarItemDropdown.js";
+import { getUsernameFromStorage } from "../../../utils/utils.js";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -60,7 +61,11 @@ function Navbar() {
               />
             </NavDropdown>
           </ul>
-          <ul className="navbar-nav ms-auto">
+          <ul className="navbar-nav ms-auto text-light align-items-center">
+            <span className="me-3">
+              Bem-Vindo,{" "}
+              <span className="fw-bold">{getUsernameFromStorage()}</span>
+            </span>
             <LogoutButton />
           </ul>
         </div>
