@@ -37,7 +37,7 @@ function PersonFormModal({
   };
 
   return (
-    <Modal show={showModal} onHide={handleClose}>
+    <Modal show={showModal} onHide={handleClose} backdrop="static">
       <ModalHeader>
         <ModalTitle>Editar Pessoa</ModalTitle>
       </ModalHeader>

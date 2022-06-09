@@ -73,7 +73,7 @@ function AddPermissionFormModal({ showModal, setShowModal }) {
   };
 
   return (
-    <Modal show={showModal} onHide={handleClose}>
+    <Modal show={showModal} onHide={handleClose} backdrop="static">
       <ModalHeader>
         <ModalTitle>Adicionar Permissão</ModalTitle>
       </ModalHeader>

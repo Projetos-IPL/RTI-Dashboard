@@ -2,6 +2,7 @@ import {
   Container,
   Modal,
   ModalBody,
+  ModalFooter,
   ModalHeader,
   ModalTitle,
 } from "react-bootstrap";
@@ -37,12 +38,7 @@ function EntranceImageModal({ showModal, handleClose, entranceRecord }) {
   return (
     <Modal show={showModal} onHide={handleClose} size="lg" centered>
       <ModalHeader closeButton>
-        <ModalTitle>
-          Movimento #{entranceRecord.entranceLogId}
-          <span className="fw-normal">
-            {" - "}({entranceRecord.formattedTimestamp})
-          </span>
-        </ModalTitle>
+        <ModalTitle>Movimento #{entranceRecord.entranceLogId}</ModalTitle>
       </ModalHeader>
       <ModalBody>
         {!loading &&
@@ -67,6 +63,10 @@ function EntranceImageModal({ showModal, handleClose, entranceRecord }) {
           ))}
         <ClipLoader loading={loading} css="display: block; margin: 0 auto;" />
       </ModalBody>
+      <ModalFooter className="justify-content-start">
+        <span className="fw-bold me-1">Data do Movimento:</span>
+        {entranceRecord.formattedTimestamp}
+      </ModalFooter>
     </Modal>
   );
 }
