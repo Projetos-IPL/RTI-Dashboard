@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, ButtonGroup, Card } from "react-bootstrap";
+import { Button, ButtonGroup, Card, Col, Row } from "react-bootstrap";
 import { APP_ROUTES, IOT_ROUTES } from "../../../config.js";
 import { useNavigate } from "react-router-dom";
 import PhotoModal from "../Modals/PhotoModal.js";
@@ -35,7 +35,7 @@ function WebcamFeed() {
     <>
       <Card className="shadow-sm">
         <Card.Header className="bg-dark text-white">Webcam</Card.Header>
-        <Card.Body className="my-3">
+        <Card.Body className="my-2">
           {showStream && (
             <img
               alt="Feed da Webcam"
@@ -45,22 +45,40 @@ function WebcamFeed() {
             />
           )}
 
-          <ButtonGroup>
-            <Button variant="danger" size="md" onClick={toggleStream}>
-              <i className="fa-solid fa-video me-2" /> Ao Vivo
-            </Button>
-            <Button variant="success" size="md" onClick={takePicture}>
-              <i className="fa-solid fa-camera me-2" /> Capturar Foto
-            </Button>
+          <div className="d-grid gap-3">
+            <ButtonGroup>
+              <Button variant="danger" onClick={toggleStream} className="p-2">
+                <Row>
+                  <Col>
+                    <i className="fas fa-video fa-xl me-2 my-3" />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>Streaming</Col>
+                </Row>
+              </Button>
+              <Button variant="success" onClick={takePicture} className="p-2">
+                <Row>
+                  <Col>
+                    <i className="fas fa-camera fa-xl me-2 my-3" />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>Capturar Foto</Col>
+                </Row>
+              </Button>
+            </ButtonGroup>
             <Button
               variant="secondary"
               onClick={() =>
                 navigate(APP_ROUTES.ENTRANCE_LOG_IMAGES_SCREEN_ROUTE)
               }
+              className="p-2"
             >
-              <i className="fa-solid fa-archive me-2" /> Ver Fotos
+              <i className="fa-solid fa-archive fa-lg me-2" />
+              Ver Fotos
             </Button>
-          </ButtonGroup>
+          </div>
         </Card.Body>
       </Card>
 

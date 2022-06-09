@@ -55,12 +55,12 @@ function LastEntranceRecordCard() {
   return (
     <Card className="shadow-sm">
       <Card.Header className="bg-dark text-white">Último Movimento</Card.Header>
-      <Card.Body className="py-3 card-body">
+      <Card.Body className="py-3 card-body my-2">
         {!loading && (
           <Row className="text-center">
             <h4>{record.personName}</h4>
             <small className="text-muted">{record.formattedTimestamp}</small>
-            <h4 className="my-3">
+            <h4 className="mt-3">
               <span
                 className={`badge bg-${record.access ? "success" : "danger"}`}
               >

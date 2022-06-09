@@ -6,7 +6,7 @@ import { API_ROUTES } from "../../../config.js";
 import { handleException } from "../../../utils/handleException.js";
 import LastEntranceRecordCard from "../../components/LastEntranceRecordCard/LastEntranceRecordCard.js";
 import DashboardStatsBoard from "../../components/DashboardStatsBoard/DashboardStatsBoard.js";
-import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import WebcamFeed from "../../components/WebcamFeed/WebcamFeed.js";
 import SensorCard from "../../components/SensorCard/SensorCard.js";
 import ActuatorCard from "../../components/ActuatorCard/ActuatorCard.js";
@@ -34,7 +34,7 @@ function MainScreen() {
     setEntranceRecordsLoading(true);
     getDataWithAuthToken(API_ROUTES.ENTRANCE_LOGS_API_ROUTE, {
       showPersonName: 1,
-      latest: 6,
+      latest: 10,
     })
       .then((res) => {
         let entranceRecordsArr = res.data.map(
@@ -83,8 +83,8 @@ function MainScreen() {
 
             <div className="my-4">
               <h4>
-                <i className="fa-solid fa-clock-rotate-left me-2" />
-                Últimos 6 Movimentos
+                <i className="fa-solid fa-clock-rotate-left me-3" />
+                Últimos 10 Movimentos
               </h4>
               <EntranceRecordTable
                 loading={entranceRecordsLoading}
@@ -101,13 +101,14 @@ function MainScreen() {
             <WebcamFeed />
 
             <div className="my-4" />
+
             <IoTActionCard />
           </Col>
         </Row>
 
         <Row className="my-4">
           <h4 className="mb-4">
-            <i className="fa-solid fa-cloud me-2" />
+            <i className="fa-solid fa-cloud me-3" />
             Estado dos Sensores
           </h4>
 
@@ -123,7 +124,7 @@ function MainScreen() {
 
         <Row className="my-4">
           <h4 className="mb-4">
-            <i className="fa-solid fa-satellite-dish me-2" />
+            <i className="fa-solid fa-satellite-dish me-3" />
             Estado dos Atuadores
           </h4>
 
