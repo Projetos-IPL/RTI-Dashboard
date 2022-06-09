@@ -14,6 +14,7 @@ export const VIEWS_API_ROUTE = API_URL + "/views.php";
 export const SENSOR_TYPES_API_ROUTE = API_URL + "/sensorTypes.php";
 export const ACTUATOR_TYPES_API_ROUTE = API_URL + "/actuatorTypes.php";
 export const ENTRANCE_LOGS_IMAGES_API_ROUTE = API_URL + "/imagensMovimento.php";
+export const EVENTS_API_ROUTE = API_URL + "/eventos.php";
 
 export const API_ROUTES = {
   AUTH_API_ROUTE,
@@ -26,6 +27,7 @@ export const API_ROUTES = {
   SENSOR_TYPES_API_ROUTE,
   ACTUATOR_TYPES_API_ROUTE,
   ENTRANCE_LOGS_IMAGES_API_ROUTE,
+  EVENTS_API_ROUTE,
 };
 
 // Aplicação
@@ -60,4 +62,10 @@ export const IOT_ROUTES = {
   RPI_URL,
   STREAMING_URL,
   TAKE_PICTURE,
+};
+
+export const IOT_EVENTS = {
+  OPEN_DOORS: "OPEN_DOORS",
+  CLOSE_SESSION: "CLOSE_SESSION",
+  TOGGLE_LIGHTS: "TOGGLE_LIGHTS",
 };

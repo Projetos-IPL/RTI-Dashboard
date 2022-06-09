@@ -12,6 +12,7 @@ import SensorCard from "../../components/SensorCard/SensorCard.js";
 import ActuatorCard from "../../components/ActuatorCard/ActuatorCard.js";
 
 import "./MainScreen.css";
+import IoTActionCard from "../../components/IoTActionCard/IoTActionCard.js";
 
 function MainScreen() {
   const [entranceRecordsLoading: boolean, setEntranceRecordsLoading] =
@@ -100,16 +101,7 @@ function MainScreen() {
             <WebcamFeed />
 
             <div className="my-4" />
-
-            <Card className="shadow-sm">
-              <Card.Header className="bg-dark text-white">Ações</Card.Header>
-              <Card.Body className="my-3">
-                <Button variant="warning">
-                  <i className="fas fa-lightbulb me-2"></i>
-                  Alternar Luzes
-                </Button>
-              </Card.Body>
-            </Card>
+            <IoTActionCard />
           </Col>
         </Row>
 
