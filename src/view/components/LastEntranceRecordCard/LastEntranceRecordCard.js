@@ -67,7 +67,9 @@ function LastEntranceRecordCard() {
                 <i
                   className={`fas me-2 fa-${record.access ? "check" : "ban"}`}
                 />
-                <span>{record.access ? "Permitido" : "Negado"}</span>
+                <span className="fw-normal">
+                  {record.access ? "Permitido" : "Negado"}
+                </span>
               </span>
             </h4>
           </Row>

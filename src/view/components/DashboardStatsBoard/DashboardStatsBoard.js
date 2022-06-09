@@ -1,4 +1,3 @@
-// TODO Implementar componente
 import React, { useEffect, useState } from "react";
 import { getDataWithAuthToken } from "../../../utils/requests.js";
 import { API_ROUTES } from "../../../config.js";

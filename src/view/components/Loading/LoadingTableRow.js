@@ -1,7 +1,6 @@
 import { BarLoader } from "react-spinners";
 import React from "react";
 
-// TODO Por a funcionar
 function LoadingTableRow() {
   return (
     <tr>

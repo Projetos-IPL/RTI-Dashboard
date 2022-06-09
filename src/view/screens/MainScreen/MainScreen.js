@@ -73,7 +73,7 @@ function MainScreen() {
   return (
     <main>
       <Container className="mt-5">
-        <h2 className="fw-light">Dashboard</h2>
+        <h2>Dashboard</h2>
 
         <Row>
           <Col md={8} sm={12}>
