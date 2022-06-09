@@ -34,7 +34,7 @@ function MainScreen() {
     setEntranceRecordsLoading(true);
     getDataWithAuthToken(API_ROUTES.ENTRANCE_LOGS_API_ROUTE, {
       showPersonName: 1,
-      latest: 5,
+      latest: 6,
     })
       .then((res) => {
         let entranceRecordsArr = res.data.map(
@@ -84,7 +84,7 @@ function MainScreen() {
             <div className="my-4">
               <h4>
                 <i className="fa-solid fa-clock-rotate-left me-2" />
-                Últimos 5 Movimentos
+                Últimos 6 Movimentos
               </h4>
               <EntranceRecordTable
                 loading={entranceRecordsLoading}
