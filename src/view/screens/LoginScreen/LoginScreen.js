@@ -44,7 +44,7 @@ function LoginScreen() {
       </Row>
 
       <Row>
-        <Col sm={12} style={{ maxWidth: "330px" }} className="mt-5 p-4 m-auto">
+        <Col sm={12} style={{ maxWidth: "330px" }} className="mt-2 p-1 m-auto">
           <div id="error-banner" role="alert"></div>
           <LoginForm submitAction={loginFormSubmitAction} loading={loading} />
         </Col>
