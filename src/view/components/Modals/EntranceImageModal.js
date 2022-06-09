@@ -33,7 +33,7 @@ function EntranceImageModal({ showModal, handleClose, entranceRecord }) {
       })
       .catch((err) => handleException(err))
       .finally(() => setLoading(false));
-  }, [showModal]);
+  }, [entranceRecord.entranceLogId, showModal]);
 
   return (
     <Modal show={showModal} onHide={handleClose} size="lg" centered>

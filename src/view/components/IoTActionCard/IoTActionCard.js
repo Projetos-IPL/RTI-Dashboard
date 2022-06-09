@@ -3,10 +3,8 @@ import React from "react";
 import { postDataWithAuthToken } from "../../../utils/requests.js";
 import { API_ROUTES, IOT_EVENTS } from "../../../config.js";
 import { toast } from "react-toastify";
-import {
-  TOAST_ERROR_CONFIG,
-  TOAST_SUCCESS_CONFIG,
-} from "../../../utils/toastConfigs.js";
+import { TOAST_SUCCESS_CONFIG } from "../../../utils/toastConfigs.js";
+import { handleException } from "../../../utils/handleException.js";
 
 function IoTActionCard() {
   const handleToggleLights = () => {
@@ -14,6 +12,7 @@ function IoTActionCard() {
 
     postDataWithAuthToken(API_ROUTES.EVENTS_API_ROUTE, {
       event_name: IOT_EVENTS.TOGGLE_LIGHTS,
+      action: IOT_EVENTS.EQ_ADD_ACTION,
     })
       .then((res) => {
         if (res.ok) {
@@ -24,10 +23,10 @@ function IoTActionCard() {
         }
       })
       .catch((e) => {
-        toast.error(
-          "Evento já registado, aguarde por favor.",
-          TOAST_ERROR_CONFIG
-        );
+        if (e.message.includes("Duplicate")) {
+          e.message = "Evento de alternar luzes pendente.";
+        }
+        handleException(e);
       });
   };
 
@@ -36,6 +35,7 @@ function IoTActionCard() {
 
     postDataWithAuthToken(API_ROUTES.EVENTS_API_ROUTE, {
       event_name: IOT_EVENTS.OPEN_DOORS,
+      action: IOT_EVENTS.EQ_ADD_ACTION,
     })
       .then((res) => {
         if (res.ok) {
@@ -46,10 +46,10 @@ function IoTActionCard() {
         }
       })
       .catch((e) => {
-        toast.error(
-          "Evento já registado, aguarde por favor.",
-          TOAST_ERROR_CONFIG
-        );
+        if (e.message.includes("Duplicate")) {
+          e.message = "Evento de abrir portas pendente.";
+        }
+        handleException(e);
       });
   };
 
