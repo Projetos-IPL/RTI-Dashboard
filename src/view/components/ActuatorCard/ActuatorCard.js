@@ -6,6 +6,8 @@ import { handleException } from "../../../utils/handleException.js";
 import { ClipLoader } from "react-spinners";
 import ActuatorLog from "../../../model/ActuatorLog.js";
 import { toast } from "react-toastify";
+import { DATA_ENTITIES } from "../../../DataEntities.js";
+import { useRealtime } from "../../../useRealtime.js";
 
 /**
  * @param actuatorType
@@ -25,7 +27,7 @@ function ActuatorCard({ actuatorType, actuatorName }) {
   const [loading: boolean, setLoading] = useState(true);
 
   // Obter último registo de sensor
-  useEffect(() => {
+  useRealtime(DATA_ENTITIES.ACTUATOR_LOGS, () => {
     getDataWithAuthToken(API_ROUTES.ACTUATOR_LOG_API_ROUTE, {
       actuatorType: actuatorType,
       latest: 1,
@@ -90,7 +92,7 @@ function ActuatorCard({ actuatorType, actuatorName }) {
       })
       .catch((err) => handleException(err))
       .finally(() => setLoading(false));
-  }, []);
+  });
 
   return (
     <Card>

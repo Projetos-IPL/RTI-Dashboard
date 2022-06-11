@@ -5,6 +5,8 @@ import { API_ROUTES } from "../../../config.js";
 import SensorLog from "../../../model/SensorLog.js";
 import { handleException } from "../../../utils/handleException.js";
 import { ClipLoader } from "react-spinners";
+import { DATA_ENTITIES } from "../../../DataEntities.js";
+import { useRealtime } from "../../../useRealtime.js";
 
 /**
  * @param sensorType
@@ -23,7 +25,7 @@ function SensorCard({ sensorType, sensorName }) {
   const [loading: boolean, setLoading] = useState(true);
 
   // Obter último registo de sensor
-  useEffect(() => {
+  useRealtime(DATA_ENTITIES.SENSOR_LOGS, () => {
     getDataWithAuthToken(API_ROUTES.SENSOR_LOG_API_ROUTE, {
       sensorType: sensorType,
       latest: 1,
@@ -48,7 +50,7 @@ function SensorCard({ sensorType, sensorName }) {
       })
       .catch((err) => handleException(err))
       .finally(() => setLoading(false));
-  }, []);
+  });
 
   return (
     <Card>
