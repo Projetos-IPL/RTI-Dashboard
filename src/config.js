@@ -71,3 +71,8 @@ export const IOT_EVENTS = {
   EQ_ADD_ACTION: "ADD",
   EQ_REMOVE_ACTION: "REMOVE",
 };
+
+// Websocket Server
+export const WEB_SOCKET_SERVER_URL = "http://127.0.0.1:3001";
+
+export const DATA_ENTITY_STATE_CHANGE_EVENT = "DATA_ENTITY_STATE_CHANGE_EVENT";

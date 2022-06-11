@@ -1,9 +1,10 @@
-// TODO Implementar componente
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { getDataWithAuthToken } from "../../../utils/requests.js";
 import { API_ROUTES } from "../../../config.js";
 import { handleException } from "../../../utils/handleException.js";
 import { ClipLoader } from "react-spinners";
+import { useRealtime } from "../../../useRealtime.js";
+import { DATA_ENTITIES as DE } from "../../../DataEntities.js";
 
 function DashboardStatsBoard() {
   const [loading, setLoading] = useState();
@@ -13,9 +14,15 @@ function DashboardStatsBoard() {
   const [blockedMovements, setBlockMovements] = useState(0);
   const [permissionCount, setPermissionCount] = useState(0);
 
-  useEffect(() => {
-    // Fetch data
-    setLoading(true);
+  // Buscar dados da vista de estatísticas gerais dos dados
+  useRealtime([DE.ENTRANCE_LOGS, DE.PERMISSIONS, DE.PEOPLE], () => {
+    // Apenas apresentar o spinner quando for o primeiro fetch
+    if (registeredPeople === 0) {
+      setLoading(true);
+    }
+
+    console.log("Fetching dashboard stats...");
+
     // Fazer consulta à vista de estatisticas
     getDataWithAuthToken(API_ROUTES.VIEWS_API_ROUTE)
       .then((res) => {
@@ -23,10 +30,11 @@ function DashboardStatsBoard() {
         setAllowedMovements(res.data[0].successful_entrance_logs);
         setBlockMovements(res.data[0].unsuccessful_entrance_logs);
         setPermissionCount(res.data[0].permission_count);
+        console.log("Dashboard stats fetched!");
       })
       .catch((err) => handleException(err))
       .finally(() => setLoading(false));
-  }, []);
+  });
 
   return (
     <div className="row">

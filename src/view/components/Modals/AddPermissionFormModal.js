@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Modal,
   Button,
@@ -20,7 +20,6 @@ import { API_ROUTES } from "../../../config.js";
 import { handleException } from "../../../utils/handleException.js";
 import { toast } from "react-toastify";
 import { TOAST_SUCCESS_CONFIG } from "../../../utils/toastConfigs.js";
-import PermissionsDataContext from "../../screens/PermissionsScreen/PermissionsDataContext.js";
 import { AddPermissionFormSchema } from "../../../model/Permission.js";
 
 /**
@@ -32,7 +31,6 @@ import { AddPermissionFormSchema } from "../../../model/Permission.js";
  */
 function AddPermissionFormModal({ showModal, setShowModal }) {
   const [peopleRecords, setPeopleRecords] = useState([]);
-  const { setOutdatedRecords } = useContext(PermissionsDataContext);
 
   useEffect(() => {
     getDataWithAuthToken(API_ROUTES.PEOPLE_API_ROUTE)
@@ -51,7 +49,6 @@ function AddPermissionFormModal({ showModal, setShowModal }) {
   };
 
   const handleAddPermissionFormSubmit = (values, { setSubmitting }) => {
-    console.log("e");
     setSubmitting(true);
     postDataWithAuthToken(API_ROUTES.PERMISSIONS_API_ROUTE, {
       rfid: values.rfid,
@@ -59,7 +56,6 @@ function AddPermissionFormModal({ showModal, setShowModal }) {
       .then((res) => {
         if (res.ok) {
           toast.success(res.data, TOAST_SUCCESS_CONFIG);
-          setOutdatedRecords(true);
           handleClose();
         } else {
           handleException(new Error(res.data.message));

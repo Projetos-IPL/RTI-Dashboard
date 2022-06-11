@@ -1,37 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
 
 import { getDataWithAuthToken } from "../../../utils/requests.js";
 import { API_ROUTES } from "../../../config.js";
 import { handleException } from "../../../utils/handleException.js";
 import { ClipLoader } from "react-spinners";
+import { DATA_ENTITIES } from "../../../DataEntities.js";
+import { useRealtime } from "../../../useRealtime.js";
 
 function ImageScreen() {
   const [loading, setLoading] = useState(true);
-  const [outdatedRecords, setOutdatedRecords] = useState(true);
   const [entranceLogImages, setEntranceLogImages] = useState([]);
   const [imageGridSize, setImageGridSize] = useState(3);
   const [imageGridButtonText, setImageGridButtonText] =
     useState("Imagens Maiores");
   const [imageGridButtonIcon, setImageGridButtonIcon] = useState("maximize");
 
-  // Fetch imagens dos registos de movimento
-  useEffect(() => {
-    if (!outdatedRecords) return;
+  /* Atualizar as imagens dos registos de entrada em tempo real, quando o dashboard recebe notificação
+  de que as imagens dos registos de entrada foram atualizados */
+  useRealtime(DATA_ENTITIES.ENTRANCE_LOG_IMAGES, () => {
+    // Apenas apresentar o spinner quando for o primeiro fetch
+    if (entranceLogImages.length === 0) {
+      setLoading(true);
+    }
 
-    setLoading(true);
+    console.log("Fetching entrance log images...");
 
+    // Buscar imagens à API
     getDataWithAuthToken(API_ROUTES.ENTRANCE_LOGS_IMAGES_API_ROUTE)
       .then((res) => {
         setEntranceLogImages(res.data);
-        console.log("Movement images fetched!");
-        setLoading(false);
-        setOutdatedRecords(false);
+        console.log("Entrance log images fetched!");
       })
       .catch((err) => {
         handleException(err.message);
-      });
-  }, [outdatedRecords]);
+      })
+      .finally(() => setLoading(false));
+  });
 
   const handleImageSizeToggle = () => {
     if (imageGridSize === 4) {

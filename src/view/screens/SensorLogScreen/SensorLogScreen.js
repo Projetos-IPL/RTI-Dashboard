@@ -6,40 +6,41 @@ import { API_ROUTES } from "../../../config.js";
 import { handleException } from "../../../utils/handleException.js";
 import SensorLog from "../../../model/SensorLog.js";
 import SensorLogRecordTable from "../../components/Tables/SensorLogRecordTable/SensorLogRecordTable.js";
-import { SensorLogDataProvider } from "./SensorLogDataContext.js";
 import SensorFilterSelect from "./SensorFilterSelect.js";
+import { DATA_ENTITIES } from "../../../DataEntities.js";
+import { useRealtime } from "../../../useRealtime.js";
 
 function SensorLogScreen() {
   const [loading, setLoading] = useState(true);
-  const [outdatedRecords, setOutdatedRecords] = useState(true);
-  const [sensorLogRecords, setSensorLogRecords] = useState();
+  const [sensorLogRecords, setSensorLogRecords] = useState([]);
 
-  const [filterBySensorType, setFilterBySensorType] = useState({
-    prevFilter: 0,
-    filter: 0,
-  });
+  const [filteredLogRecords, setFilteredLogRecords] = useState(null);
+  const [filterBySensorType, setFilterBySensorType] = useState(null);
+
+  // useEffect para filtrar os registos de sensor
+
+  useEffect(() => {
+    if (!filterBySensorType) {
+      if (sensorLogRecords.length !== 0) {
+        setFilteredLogRecords(sensorLogRecords);
+      }
+      return;
+    }
+
+    setFilteredLogRecords(filterLogs(sensorLogRecords, filterBySensorType));
+  }, [filterBySensorType]);
 
   // Fetch sensor records
-  useEffect(() => {
-    // Apenas buscar dados à API se os registos estiverem desatualizados ou se o filtro de sensors alterar
-    if (
-      !outdatedRecords &&
-      filterBySensorType.prevFilter === filterBySensorType.filter
-    )
-      return;
-    setLoading(true);
-
+  useRealtime(DATA_ENTITIES.SENSOR_LOGS, () => {
+    // Apenas apresentar o spinner quando for o primeiro fetch
+    if (sensorLogRecords.length === 0) {
+      setLoading(true);
+    }
     console.log("Fetching sensor logs...");
 
     let urlParams = {
       showSensorName: 1,
     };
-
-    if (filterBySensorType.filter !== 0) {
-      urlParams.sensorType = filterBySensorType.filter;
-    } else {
-      delete urlParams.sensorType;
-    }
 
     getDataWithAuthToken(API_ROUTES.SENSOR_LOG_API_ROUTE, urlParams)
       .then((res) => {
@@ -54,42 +55,45 @@ function SensorLogScreen() {
             )
         );
         setSensorLogRecords(sensorLogRecords);
+
+        // Para filtrar a lista de registos
+        if (filterBySensorType) {
+          setFilteredLogRecords(
+            filterLogs(sensorLogRecords, filterBySensorType)
+          );
+        }
+
         console.log("Sensor logs fetched!");
         setLoading(false);
-        setOutdatedRecords(false);
       })
       .catch((err) => {
         handleException(err.message);
       });
-  }, [outdatedRecords, filterBySensorType]);
+  });
+
+  const filterLogs = (logs, filterId) => {
+    return logs.filter((record) => record.sensorId === filterId);
+  };
 
   return (
-    <SensorLogDataProvider
-      value={{
-        outdatedRecords,
-        setOutdatedRecords,
-      }}
-    >
-      <main className="container mt-5">
-        <Row className="justify-content-between">
-          <Col md={9} xs={12} className="mb-2">
-            <h2 className="float-start">Registos de Sensor</h2>
-          </Col>
-          <Col md={3} xs={12} className="align-middle mb-0">
-            <SensorFilterSelect
-              setFilter={setFilterBySensorType}
-              filter={filterBySensorType}
-            />
-          </Col>
-        </Row>
-        <div className="mt-5">
-          <SensorLogRecordTable
-            loading={loading}
-            sensorLogRecords={sensorLogRecords}
-          />
-        </div>
-      </main>
-    </SensorLogDataProvider>
+    <main className="container mt-5">
+      <Row className="justify-content-between">
+        <Col md={9} xs={12} className="mb-2">
+          <h2 className="float-start">Registos de Sensor</h2>
+        </Col>
+        <Col md={3} xs={12} className="align-middle mb-0">
+          <SensorFilterSelect setFilter={setFilterBySensorType} />
+        </Col>
+      </Row>
+      <div className="mt-5">
+        <SensorLogRecordTable
+          loading={loading}
+          sensorLogRecords={
+            filteredLogRecords ? filteredLogRecords : sensorLogRecords
+          }
+        />
+      </div>
+    </main>
   );
 }
 

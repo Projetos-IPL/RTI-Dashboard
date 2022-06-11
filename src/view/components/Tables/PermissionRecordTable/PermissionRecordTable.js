@@ -2,12 +2,12 @@ import React from "react";
 import RecordTable from "../RecordTable/RecordTable.js";
 import PermissionRecordTableRow from "./PermissionRecordTableRow.js";
 
-/** Tabela para registos de pessoas
+/** Tabela para registos de permissões
  * @param {boolean} loading
  * @param {Array<Permission>} peopleRecords
  * @returns {JSX.Element}
  */
-function PeopleRecordTable({ loading, permissionRecords }) {
+function PermissionRecordTable({ loading, permissionRecords }) {
   const tableHeaders = ["ID", "RFID", "Ações"];
 
   return (
@@ -20,4 +20,4 @@ function PeopleRecordTable({ loading, permissionRecords }) {
   );
 }
 
-export default PeopleRecordTable;
+export default PermissionRecordTable;

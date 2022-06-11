@@ -4,7 +4,7 @@ import { getData } from "../../../utils/requests.js";
 import { API_ROUTES } from "../../../config.js";
 import { handleException } from "../../../utils/handleException.js";
 
-function ActuatorFilterSelect({ filter, setFilter }) {
+function ActuatorFilterSelect({ setFilter }) {
   const [actuators, setActuators] = useState();
 
   // Fetch actuatorTypes
@@ -23,10 +23,7 @@ function ActuatorFilterSelect({ filter, setFilter }) {
   const actuatorFilterSelectRef = createRef();
 
   const handleActuatorFilterChange = () => {
-    setFilter({
-      prevFilter: filter,
-      filter: parseInt(actuatorFilterSelectRef.current.value),
-    });
+    setFilter(actuatorFilterSelectRef.current.value);
   };
 
   return (
@@ -34,7 +31,7 @@ function ActuatorFilterSelect({ filter, setFilter }) {
       ref={actuatorFilterSelectRef}
       onChange={handleActuatorFilterChange}
     >
-      <option value={0} />
+      <option value={null} />
       {actuators &&
         actuators.map((actuator, index) => {
           return (

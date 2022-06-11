@@ -4,7 +4,7 @@ import { getData } from "../../../utils/requests.js";
 import { API_ROUTES } from "../../../config.js";
 import { handleException } from "../../../utils/handleException.js";
 
-function SensorFilterSelect({ filter, setFilter }) {
+function SensorFilterSelect({ setFilter }) {
   const [sensors, setSensors] = useState();
 
   // Fetch sensorTypes
@@ -23,10 +23,7 @@ function SensorFilterSelect({ filter, setFilter }) {
   const sensorFilterSelectRef = createRef();
 
   const handleSensorFilterChange = () => {
-    setFilter({
-      prevFilter: filter,
-      filter: parseInt(sensorFilterSelectRef.current.value),
-    });
+    setFilter(sensorFilterSelectRef.current.value);
   };
 
   return (
@@ -34,7 +31,7 @@ function SensorFilterSelect({ filter, setFilter }) {
       ref={sensorFilterSelectRef}
       onChange={handleSensorFilterChange}
     >
-      <option value={0} />
+      <option value={null} />
       {sensors &&
         sensors.map((sensor, index) => {
           return (

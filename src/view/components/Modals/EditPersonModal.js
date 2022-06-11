@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { API_ROUTES } from "../../../config.js";
 import { putRequestWithAuthToken } from "../../../utils/requests.js";
 import { toast } from "react-toastify";
 import { TOAST_SUCCESS_CONFIG } from "../../../utils/toastConfigs.js";
 import { handleException } from "../../../utils/handleException.js";
-import PeopleDataContext from "../../screens/PeopleScreen/PeopleDataContext.js";
 import PersonFormModal from "./PersonFormModal.js";
 
 /**
@@ -15,22 +14,24 @@ import PersonFormModal from "./PersonFormModal.js";
  * @returns {JSX.Element}
  */
 function EditPersonModal({ showModal, record, setShowModal }) {
-  const { setOutdatedRecords } = useContext(PeopleDataContext);
-
+  // Função para fechar o modal
   const handleClose = () => {
     setShowModal(false);
   };
 
+  // Função para tratar a submissão do formulário de editar pessoa
   const handleSubmit = (values, { setSubmitting }) => {
     setSubmitting(true);
+
+    // Submeter dados para a API
     putRequestWithAuthToken(API_ROUTES.PEOPLE_API_ROUTE, {
       rfid: record.rfid,
       newRfid: values.rfid,
     })
       .then((res) => {
+        // Apresentar feeback
         if (res.ok) {
           toast.success(res.data, TOAST_SUCCESS_CONFIG);
-          setOutdatedRecords(true);
           handleClose();
         } else {
           handleException(new Error(res.data.message));

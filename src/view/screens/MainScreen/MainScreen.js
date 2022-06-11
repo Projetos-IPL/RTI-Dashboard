@@ -13,12 +13,11 @@ import ActuatorCard from "../../components/ActuatorCard/ActuatorCard.js";
 
 import "./MainScreen.css";
 import IoTActionCard from "../../components/IoTActionCard/IoTActionCard.js";
+import { useRealtime } from "../../../useRealtime.js";
+import { DATA_ENTITIES } from "../../../DataEntities.js";
 
 function MainScreen() {
   const [entranceRecordsLoading: boolean, setEntranceRecordsLoading] =
-    useState(true);
-
-  const [outdatedEntranceRecords: boolean, setOutdatedEntranceRecords] =
     useState(true);
 
   const [entranceRecords: Array<EntranceRecord>, setEntranceRecords] = useState(
@@ -28,15 +27,22 @@ function MainScreen() {
   const [sensorTypes: Array<Object>, setSensorTypes] = useState([]);
   const [actuatorTypes: Array<Object>, setActuatorTypes] = useState([]);
 
-  // Fetch entrance records
-  useEffect(() => {
-    if (!outdatedEntranceRecords) return;
-    setEntranceRecordsLoading(true);
+  // Obter últimos registos de entrada em tempo real
+  useRealtime(DATA_ENTITIES.ENTRANCE_LOGS, () => {
+    // Apenas apresentar o spinner de carregamento se for a primeira busca de dados
+    if (entranceRecords.length === 0) {
+      setEntranceRecordsLoading(true);
+    }
+
+    console.log("Fetching entrance logs...");
+
+    // Buscar dados à API
     getDataWithAuthToken(API_ROUTES.ENTRANCE_LOGS_API_ROUTE, {
       showPersonName: 1,
       latest: 10,
     })
       .then((res) => {
+        // Converter dados da resposta para objetos da classe EntranceRecord
         let entranceRecordsArr = res.data.map(
           (r) =>
             new EntranceRecord(
@@ -49,21 +55,21 @@ function MainScreen() {
         );
         setEntranceRecords(entranceRecordsArr);
         setEntranceRecordsLoading(false);
-        setOutdatedEntranceRecords(false);
+        console.log("Entrance logs fetched!");
       })
       .catch((err) => {
         handleException(err.message);
       });
-  }, [outdatedEntranceRecords]);
+  });
 
-  // Fetch sensor types
+  // Buscar tipos de sensor
   useEffect(() => {
     getDataWithAuthToken(API_ROUTES.SENSOR_TYPES_API_ROUTE)
       .then((res) => setSensorTypes(res.data))
       .catch((err) => handleException(err));
   }, []);
 
-  // Fetch actuator types
+  // Buscar tipos de atuador
   useEffect(() => {
     getDataWithAuthToken(API_ROUTES.ACTUATOR_TYPES_API_ROUTE)
       .then((res) => setActuatorTypes(res.data))
