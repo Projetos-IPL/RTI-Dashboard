@@ -78,7 +78,6 @@ export async function login(username, password) {
   return res.ok;
 }
 
-// TODO Implementar função logout
 function logout() {
   localStorage.clear();
   redirectToLoginScreen();

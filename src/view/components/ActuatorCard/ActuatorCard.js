@@ -65,6 +65,27 @@ function ActuatorCard({ actuatorType, actuatorName }) {
               progress: undefined,
             }
           );
+        } else if (
+          latestLog.actuatorId === "5" &&
+          latestLog.actuatorState === "1"
+        ) {
+          toast.warn(
+            <div>
+              <h6 className="mb-0 fw-bold">Alarme ativado</h6>
+              <small className="text-muted mb-0">
+                Tentativa de acesso/movimento
+              </small>
+            </div>,
+            {
+              position: "top-right",
+              autoClose: false,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            }
+          );
         }
       })
       .catch((err) => handleException(err))
