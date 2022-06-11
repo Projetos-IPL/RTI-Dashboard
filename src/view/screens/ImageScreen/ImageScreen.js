@@ -34,12 +34,12 @@ function ImageScreen() {
   }, [outdatedRecords]);
 
   const handleImageSizeToggle = () => {
-    if (imageGridSize === 4) {
+    if (imageGridSize === 6) {
       setImageGridSize(3);
       setImageGridButtonText("Imagens Maiores");
       setImageGridButtonIcon("maximize");
     } else {
-      setImageGridSize(4);
+      setImageGridSize(6);
       setImageGridButtonText("Imagens Menores");
       setImageGridButtonIcon("minimize");
     }
