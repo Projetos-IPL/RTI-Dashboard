@@ -1,5 +1,4 @@
 import { createContext } from "react";
-import { DATA_ENTITIES as DE } from "./DataEntities.js";
 
 export const UPDATED = "UPDATED";
 export const OUTDATED = "OUTDATED";
