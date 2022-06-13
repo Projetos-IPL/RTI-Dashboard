@@ -62,6 +62,7 @@ function ActuatorCard({ actuatorType, actuatorName }) {
               <small className="text-muted">Sprinkler ativado</small>
             </div>,
             {
+              toastId: "sprinkler-toast",
               position: "top-right",
               autoClose: false,
               hideProgressBar: false,
@@ -83,6 +84,7 @@ function ActuatorCard({ actuatorType, actuatorName }) {
               </small>
             </div>,
             {
+              toastId: "alarm-toast",
               position: "top-right",
               autoClose: false,
               hideProgressBar: false,
