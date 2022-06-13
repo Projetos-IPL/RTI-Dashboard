@@ -80,6 +80,7 @@ function Dashboard() {
   // Escutar eventos
   useRealtime(DATA_ENTITIES.EVENTS, () => {
     getDataWithAuthToken(API_ROUTES.EVENTS_API_ROUTE).then((res) => {
+      console.log(res.data);
       res.data.forEach((evt) => {
         // Se o evento de fechar sessão estiver na event queue, terminar sessão
         if (evt === "CLOSE_SESSION") {
