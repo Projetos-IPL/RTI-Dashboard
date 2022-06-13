@@ -5,6 +5,8 @@ import EntranceRecord from "../../../model/EntranceRecord.js";
 import { handleException } from "../../../utils/handleException.js";
 import { ClipLoader } from "react-spinners";
 import { Card, Row } from "react-bootstrap";
+import { DATA_ENTITIES } from "../../../DataEntities.js";
+import { useRealtime } from "../../../useRealtime.js";
 
 function LastEntranceRecordCard() {
   const [loading, setLoading] = useState(true);
@@ -17,7 +19,7 @@ function LastEntranceRecordCard() {
   const [entranceRecordImage: string, setEntranceRecordImage] = useState("");
 
   // Obter último registo de movimento
-  useEffect(() => {
+  useRealtime(DATA_ENTITIES.ENTRANCE_LOGS, () => {
     getDataWithAuthToken(API_ROUTES.ENTRANCE_LOGS_API_ROUTE, {
       latest: 1,
       showPersonName: 1,
@@ -35,10 +37,10 @@ function LastEntranceRecordCard() {
         setLoading(false);
       })
       .catch((err) => handleException(err));
-  }, []);
+  });
 
   // Obter imagem do último registo de movimento
-  useEffect(() => {
+  useRealtime(DATA_ENTITIES.ENTRANCE_LOG_IMAGES, () => {
     setImageLoading(true);
     getDataWithAuthToken(API_ROUTES.ENTRANCE_LOGS_IMAGES_API_ROUTE, {
       entrance_log_id: record.entranceLogId,
@@ -50,7 +52,7 @@ function LastEntranceRecordCard() {
       })
       .catch((err) => handleException(err))
       .finally(() => setImageLoading(false));
-  }, [record]);
+  });
 
   return (
     <Card className="shadow-sm">

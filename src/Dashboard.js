@@ -50,7 +50,7 @@ function Dashboard() {
     // recarregados os dados
     socket.on(DATA_ENTITY_STATE_CHANGE_EVENT, (dataEntity) => {
       createDataStateEvent(dataEntity, setDataStateEvent);
-      toast.info("Event received, data: " + dataEntity);
+      console.log("Event received, data: " + dataEntity);
     });
   }, []);
 
