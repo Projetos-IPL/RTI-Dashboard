@@ -52,8 +52,10 @@ function ActuatorCard({ actuatorType, actuatorName }) {
         setLatestActuatorLog(latestLog);
 
         // Eventos de IoT
-        console.log(latestLog);
-        if (latestLog.actuatorId === "7" && latestLog.actuatorState === "1") {
+        if (
+          latestLog.actuatorId.toString() === "7" &&
+          latestLog.actuatorState.toString() === "1"
+        ) {
           toast.warn(
             <div>
               <h6 className="mb-0 fw-bold">Fumo detetado</h6>
@@ -70,8 +72,8 @@ function ActuatorCard({ actuatorType, actuatorName }) {
             }
           );
         } else if (
-          latestLog.actuatorId === "5" &&
-          latestLog.actuatorState === "1"
+          latestLog.actuatorId.toString() === "5" &&
+          latestLog.actuatorState.toString() === "1"
         ) {
           toast.warn(
             <div>

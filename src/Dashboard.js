@@ -82,21 +82,23 @@ function Dashboard() {
 
   // Escutar eventos
   useRealtime(DATA_ENTITIES.EVENTS, () => {
-    getDataWithAuthToken(API_ROUTES.EVENTS_API_ROUTE).then((res) => {
-      console.log(res.data);
-      res.data.forEach((evt) => {
-        // Se o evento de fechar sessão estiver na event queue, terminar sessão
-        if (evt === "CLOSE_SESSION") {
-          // Retirar evento da event queue
-          postDataWithAuthToken(API_ROUTES.EVENTS_API_ROUTE, {
-            event_name: "CLOSE_SESSION",
-            action: "REMOVE",
-          });
+    getDataWithAuthToken(API_ROUTES.EVENTS_API_ROUTE)
+      .then((res) => {
+        console.log(res.data);
+        res.data.forEach((evt) => {
+          // Se o evento de fechar sessão estiver na event queue, terminar sessão
+          if (evt === "CLOSE_SESSION") {
+            // Retirar evento da event queue
+            postDataWithAuthToken(API_ROUTES.EVENTS_API_ROUTE, {
+              event_name: "CLOSE_SESSION",
+              action: "REMOVE",
+            });
 
-          authUtils.logout();
-        }
-      });
-    });
+            authUtils.logout();
+          }
+        });
+      })
+      .catch((err) => handleException(err));
   });
 
   return (
