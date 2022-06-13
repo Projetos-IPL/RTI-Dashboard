@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import {
+  API_ROUTES,
   APP_ROUTES,
   DATA_ENTITY_STATE_CHANGE_EVENT,
   WEB_SOCKET_SERVER_URL,
@@ -32,6 +33,9 @@ import { getUsernameFromStorage } from "./utils/utils.js";
 
 import socketIOClient from "socket.io-client";
 import { createDataStateEvent } from "./utils/globalDataStateUtils.js";
+import { DATA_ENTITIES } from "./DataEntities.js";
+import { useRealtime } from "./useRealtime.js";
+import { getDataWithAuthToken } from "./utils/requests.js";
 
 function Dashboard() {
   const [dataStateEvent, setDataStateEvent] = useState(
@@ -72,6 +76,18 @@ function Dashboard() {
       TOAST_SUCCESS_CONFIG
     );
   }, []);
+
+  // Escutar eventos
+  useRealtime(DATA_ENTITIES.EVENTS, () => {
+    getDataWithAuthToken(API_ROUTES.EVENTS_API_ROUTE).then((res) => {
+      res.data.forEach((evt) => {
+        // Se o evento de fechar sessão estiver na event queue, terminar sessão
+        if (evt === "CLOSE_SESSION") {
+          authUtils.logout();
+        }
+      });
+    });
+  });
 
   return (
     <GlobalDataStateEvent.Provider
