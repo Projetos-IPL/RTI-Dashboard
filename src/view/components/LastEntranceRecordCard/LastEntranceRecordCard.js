@@ -39,7 +39,7 @@ function LastEntranceRecordCard() {
           setLoading(false);
 
           getDataWithAuthToken(API_ROUTES.ENTRANCE_LOGS_IMAGES_API_ROUTE, {
-            entrance_log_id: record.entranceLogId,
+            entrance_log_id: res.data[0].entrance_log_id,
           })
             .then((r) => {
               if (r.data.length !== 0) {
