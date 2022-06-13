@@ -75,7 +75,9 @@ function ActuatorLogScreen() {
   });
 
   const filterLogs = (logs, filterId) => {
-    return logs.filter((record) => record.actuatorId === filterId);
+    return logs.filter(
+      (record) => record.actuatorId.toString() === filterId.toString()
+    );
   };
 
   return (

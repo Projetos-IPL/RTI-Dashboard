@@ -72,7 +72,9 @@ function SensorLogScreen() {
   });
 
   const filterLogs = (logs, filterId) => {
-    return logs.filter((record) => record.sensorId === filterId);
+    return logs.filter(
+      (record) => record.sensorId.toString() === filterId.toString()
+    );
   };
 
   return (
