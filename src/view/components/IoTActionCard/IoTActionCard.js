@@ -86,7 +86,7 @@ function IoTActionCard() {
                 </Col>
               </Row>
               <Row>
-                <Col>Alternar porta Portas</Col>
+                <Col>Alternar Portas</Col>
               </Row>
             </Button>
           </Col>
