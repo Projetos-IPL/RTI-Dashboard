@@ -19,40 +19,39 @@ function LastEntranceRecordCard() {
   const [entranceRecordImage: string, setEntranceRecordImage] = useState("");
 
   // Obter último registo de movimento
-  useRealtime(DATA_ENTITIES.ENTRANCE_LOGS, () => {
-    getDataWithAuthToken(API_ROUTES.ENTRANCE_LOGS_API_ROUTE, {
-      latest: 1,
-      showPersonName: 1,
-    })
-      .then((res) => {
-        setRecord(
-          new EntranceRecord(
-            res.data[0].entrance_log_id,
-            res.data[0].rfid,
-            res.data[0].person_name,
-            res.data[0].timestamp,
-            res.data[0].access === "1"
-          )
-        );
-        setLoading(false);
+  useRealtime(
+    [DATA_ENTITIES.ENTRANCE_LOGS, DATA_ENTITIES.ENTRANCE_LOG_IMAGES],
+    () => {
+      getDataWithAuthToken(API_ROUTES.ENTRANCE_LOGS_API_ROUTE, {
+        latest: 1,
+        showPersonName: 1,
       })
-      .catch((err) => handleException(err));
-  });
+        .then((res) => {
+          setRecord(
+            new EntranceRecord(
+              res.data[0].entrance_log_id,
+              res.data[0].rfid,
+              res.data[0].person_name,
+              res.data[0].timestamp,
+              res.data[0].access === "1"
+            )
+          );
+          setLoading(false);
 
-  // Obter imagem do último registo de movimento
-  useRealtime(DATA_ENTITIES.ENTRANCE_LOG_IMAGES, () => {
-    setImageLoading(true);
-    getDataWithAuthToken(API_ROUTES.ENTRANCE_LOGS_IMAGES_API_ROUTE, {
-      entrance_log_id: record.entranceLogId,
-    })
-      .then((r) => {
-        if (r.data.length !== 0) {
-          setEntranceRecordImage(r.data[0].image);
-        }
-      })
-      .catch((err) => handleException(err))
-      .finally(() => setImageLoading(false));
-  });
+          getDataWithAuthToken(API_ROUTES.ENTRANCE_LOGS_IMAGES_API_ROUTE, {
+            entrance_log_id: record.entranceLogId,
+          })
+            .then((r) => {
+              if (r.data.length !== 0) {
+                setEntranceRecordImage(r.data[0].image);
+              }
+            })
+            .catch((err) => handleException(err))
+            .finally(() => setImageLoading(false));
+        })
+        .catch((err) => handleException(err));
+    }
+  );
 
   return (
     <Card className="shadow-sm">
