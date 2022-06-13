@@ -52,6 +52,7 @@ function ActuatorCard({ actuatorType, actuatorName }) {
         setLatestActuatorLog(latestLog);
 
         // Eventos de IoT
+        console.log(latestLog);
         if (latestLog.actuatorId === "7" && latestLog.actuatorState === "1") {
           toast.warn(
             <div>
