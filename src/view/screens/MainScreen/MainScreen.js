@@ -43,7 +43,6 @@ function MainScreen() {
     })
       .then((res) => {
         // Converter dados da resposta para objetos da classe EntranceRecord
-        console.log(res.data);
         let entranceRecordsArr = res.data.map(
           (r) =>
             new EntranceRecord(
@@ -51,7 +50,7 @@ function MainScreen() {
               r["rfid"],
               r["person_name"],
               r["timestamp"],
-              r["access"] === "1"
+              r["access"].toString() === "1"
             )
         );
         setEntranceRecords(entranceRecordsArr);

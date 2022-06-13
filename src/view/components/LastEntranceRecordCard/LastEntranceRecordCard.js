@@ -33,7 +33,7 @@ function LastEntranceRecordCard() {
               res.data[0].rfid,
               res.data[0].person_name,
               res.data[0].timestamp,
-              res.data[0].access === "1"
+              res.data[0].access.toString() === "1"
             )
           );
           setLoading(false);
