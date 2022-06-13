@@ -35,7 +35,10 @@ import socketIOClient from "socket.io-client";
 import { createDataStateEvent } from "./utils/globalDataStateUtils.js";
 import { DATA_ENTITIES } from "./DataEntities.js";
 import { useRealtime } from "./useRealtime.js";
-import { getDataWithAuthToken } from "./utils/requests.js";
+import {
+  getDataWithAuthToken,
+  postDataWithAuthToken,
+} from "./utils/requests.js";
 
 function Dashboard() {
   const [dataStateEvent, setDataStateEvent] = useState(
@@ -84,6 +87,12 @@ function Dashboard() {
       res.data.forEach((evt) => {
         // Se o evento de fechar sessão estiver na event queue, terminar sessão
         if (evt === "CLOSE_SESSION") {
+          // Retirar evento da event queue
+          postDataWithAuthToken(API_ROUTES.EVENTS_API_ROUTE, {
+            event_name: "CLOSE_SESSION",
+            action: "REMOVE",
+          });
+
           authUtils.logout();
         }
       });
