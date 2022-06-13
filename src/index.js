@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <>
     <ToastContainer />
-    <Router basename="/dashboard">
+    <Router>
       <Routes>
         <Route
           exact
