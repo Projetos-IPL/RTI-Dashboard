@@ -43,6 +43,7 @@ function MainScreen() {
     })
       .then((res) => {
         // Converter dados da resposta para objetos da classe EntranceRecord
+        console.log(res.data);
         let entranceRecordsArr = res.data.map(
           (r) =>
             new EntranceRecord(
