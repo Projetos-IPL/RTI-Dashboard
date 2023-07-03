@@ -1,20 +1,18 @@
 // Configurações
 
 // API
-export const LOCAL_URL = process.env.API_URL;
-export const PROD_URL = "https://rti-api.afonsosantos.me/api";
-export const API_URL = LOCAL_URL;
-export const AUTH_API_ROUTE = API_URL + "/auth.php";
-export const ENTRANCE_LOGS_API_ROUTE = API_URL + "/movimentos.php";
-export const PEOPLE_API_ROUTE = API_URL + "/pessoas.php";
-export const PERMISSIONS_API_ROUTE = API_URL + "/permissoes.php";
-export const SENSOR_LOG_API_ROUTE = API_URL + "/registosDeSensor.php";
-export const ACTUATOR_LOG_API_ROUTE = API_URL + "/registosDeAtuador.php";
-export const VIEWS_API_ROUTE = API_URL + "/views.php";
-export const SENSOR_TYPES_API_ROUTE = API_URL + "/sensorTypes.php";
-export const ACTUATOR_TYPES_API_ROUTE = API_URL + "/actuatorTypes.php";
-export const ENTRANCE_LOGS_IMAGES_API_ROUTE = API_URL + "/imagensMovimento.php";
-export const EVENTS_API_ROUTE = API_URL + "/eventos.php";
+export const API_BASE_URL = process.env.API_BASE_URL;
+export const AUTH_API_ROUTE = API_BASE_URL + "/auth.php";
+export const ENTRANCE_LOGS_API_ROUTE = API_BASE_URL + "/movimentos.php";
+export const PEOPLE_API_ROUTE = API_BASE_URL + "/pessoas.php";
+export const PERMISSIONS_API_ROUTE = API_BASE_URL + "/permissoes.php";
+export const SENSOR_LOG_API_ROUTE = API_BASE_URL + "/registosDeSensor.php";
+export const ACTUATOR_LOG_API_ROUTE = API_BASE_URL + "/registosDeAtuador.php";
+export const VIEWS_API_ROUTE = API_BASE_URL + "/views.php";
+export const SENSOR_TYPES_API_ROUTE = API_BASE_URL + "/sensorTypes.php";
+export const ACTUATOR_TYPES_API_ROUTE = API_BASE_URL + "/actuatorTypes.php";
+export const ENTRANCE_LOGS_IMAGES_API_ROUTE = API_BASE_URL + "/imagensMovimento.php";
+export const EVENTS_API_ROUTE = API_BASE_URL + "/eventos.php";
 
 export const API_ROUTES = {
     AUTH_API_ROUTE,
