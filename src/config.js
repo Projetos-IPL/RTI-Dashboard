@@ -1,7 +1,7 @@
 // Configurações
 
 // API
-export const API_BASE_URL = process.env.API_BASE_URL;
+export const API_BASE_URL = process.env.API_BASE_URL + "/api";
 export const AUTH_API_ROUTE = API_BASE_URL + "/auth.php";
 export const ENTRANCE_LOGS_API_ROUTE = API_BASE_URL + "/movimentos.php";
 export const PEOPLE_API_ROUTE = API_BASE_URL + "/pessoas.php";
