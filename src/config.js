@@ -1,7 +1,7 @@
 // Configurações
 
 // API
-export const LOCAL_URL = "http://localhost:8080/api";
+export const LOCAL_URL = process.env.API_URL;
 export const PROD_URL = "https://rti-api.afonsosantos.me/api";
 export const API_URL = LOCAL_URL;
 export const AUTH_API_ROUTE = API_URL + "/auth.php";
@@ -54,7 +54,7 @@ export const APP_ROUTES = {
 };
 
 // IoT
-export const RPI_URL = "http://10.20.229.193:8080";
+export const RPI_URL = process.env.RPI_URL;
 export const STREAMING_URL = RPI_URL + "/feed";
 export const TAKE_PICTURE = RPI_URL + "/photo";
 
@@ -73,6 +73,6 @@ export const IOT_EVENTS = {
 };
 
 // Websocket Server
-export const WEB_SOCKET_SERVER_URL = "http://127.0.0.1:3001";
+export const WEB_SOCKET_SERVER_URL = process.env.SOCKET_URL;
 
 export const DATA_ENTITY_STATE_CHANGE_EVENT = "DATA_ENTITY_STATE_CHANGE_EVENT";
