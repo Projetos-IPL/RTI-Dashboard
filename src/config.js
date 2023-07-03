@@ -1,7 +1,7 @@
 // Configurações
 
 // API
-export const API_URL = process.env.API_BASE_URL;
+export const API_URL = process.env.REACT_APP_API_BASE_URL;
 export const AUTH_API_ROUTE = API_URL + "/auth.php";
 export const ENTRANCE_LOGS_API_ROUTE = API_URL + "/movimentos.php";
 export const PEOPLE_API_ROUTE = API_URL + "/pessoas.php";
@@ -71,6 +71,6 @@ export const IOT_EVENTS = {
 };
 
 // Websocket Server
-export const WEB_SOCKET_SERVER_URL = process.env.SOCKET_URL;
+export const WEB_SOCKET_SERVER_URL = process.env.REACT_APP_SOCKET_URL;
 
 export const DATA_ENTITY_STATE_CHANGE_EVENT = "DATA_ENTITY_STATE_CHANGE_EVENT";
