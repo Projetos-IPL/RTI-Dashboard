@@ -1,7 +1,7 @@
 // Configurações
 
 // API
-export const API_URL = process.env.REACT_APP_API_BASE_URL;
+export const API_URL = process.env.REACT_APP_API_URL;
 export const AUTH_API_ROUTE = API_URL + "/auth.php";
 export const ENTRANCE_LOGS_API_ROUTE = API_URL + "/movimentos.php";
 export const PEOPLE_API_ROUTE = API_URL + "/pessoas.php";
@@ -52,7 +52,7 @@ export const APP_ROUTES = {
 };
 
 // IoT
-export const RPI_URL = process.env.RPI_URL;
+export const RPI_URL = process.env.REACT_APP_RPI_URL;
 export const STREAMING_URL = RPI_URL + "/feed";
 export const TAKE_PICTURE = RPI_URL + "/photo";
 
